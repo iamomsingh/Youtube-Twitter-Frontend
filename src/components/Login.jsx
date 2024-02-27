@@ -21,19 +21,18 @@ function Login() {
     const loginData = isEmail
       ? { email: data.username, password: data.password }
       : data;
-    try {
-      const response = await dispatch(userLogin(loginData));
-      const user = await dispatch(getCurrentUser());
-      if (user && response?.payload) {
-        navigate("/");
-      }
-    } catch (error) {}
+
+    const response = await dispatch(userLogin(loginData));
+    const user = await dispatch(getCurrentUser());
+    if (user && response?.payload) {
+      navigate("/");
+    }
   };
 
   return (
     <>
       <div className='w-full h-screen text-white p-3 flex justify-center items-start'>
-        <div className='flex max-w-5xl flex-col space-y-5 justify-center items-center border border-slate-600 p-3 mt-20'>
+        <div className='flex max-w-6xl flex-col space-y-5 justify-center items-center border border-slate-600 p-3 mt-20 rounded-md shadow-2xl'>
           <div className='flex items-center gap-2 mt-5'>
             <Logo />
           </div>
@@ -43,6 +42,7 @@ function Login() {
               label='Username: '
               type='text'
               placeholder='Enter your email address'
+              className='rounded-lg'
               {...register("username", {
                 required: true,
                 validate: {
@@ -59,10 +59,11 @@ function Login() {
             <Input
               label='Password: '
               type='password'
-              placeholder='1kd074fjw0'
+              placeholder='Enter Password'
+              className='rounded-lg'
               {...register("password", {
                 required: true,
-                min: 6,
+                minLength: 6,
               })}
             />
             {errors.password && <span>{errors.password.message}</span>}
@@ -70,7 +71,7 @@ function Login() {
             <Button
               type='submit'
               bgColor='bg-purple-500'
-              className='w-full sm:py-3 py-2 hover:bg-purple-700 text-lg'
+              className='w-full sm:py-3 py-2 hover:bg-purple-700 text-lg rounded-lg'
             >
               Login
             </Button>

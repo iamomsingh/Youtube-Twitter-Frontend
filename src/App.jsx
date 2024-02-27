@@ -1,3 +1,5 @@
+import { useDispatch } from "react-redux";
+import { getCurrentUser } from "./store/Slices/authSlice.js";
 import { Toaster } from "react-hot-toast";
 import {
   createBrowserRouter,
@@ -18,6 +20,11 @@ export const router = createBrowserRouter(
 );
 
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getCurrentUser());
+  }, [dispatch]);
   return (
     <>
       <Toaster

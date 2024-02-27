@@ -3,10 +3,10 @@ import axiosInstance from "../../helpers/axiosInstance";
 import toast from "react-hot-toast";
 
 const initialState = {
+  loading: false,
   status: false,
   userData: null,
   accessToken: null,
-  refreshToken: null,
 };
 
 export const createAccount = createAsyncThunk("register", async (data) => {
@@ -91,14 +91,29 @@ export const authSlice = createSlice({
         state.status = true;
         state.userData = action.payload;
       })
+      .addCase(userLogin.pending, (state) => {
+        state.loading = true;
+      })
       .addCase(userLogin.fulfilled, (state, action) => {
         state.status = true;
-        state.userData = action.payload;
-        state.accessToken = action.payload.data.accessToken;
-        state.refreshToken = action.payload.data.refreshToken;
+        state.userData = action.payload.data.user;
+        state.loading = false;
+      })
+      .addCase(userLogout.pending, (state) => {
+        state.loading = true;
       })
       .addCase(userLogout.fulfilled, (state, action) => {
-        (state.status = true), (state.userData = null);
+        state.loading = false;
+        state.status = true;
+        state.userData = null;
+      })
+      .addCase(getCurrentUser.fulfilled, (state, action) => {
+        state.status = true;
+        state.userData = action.payload.data;
+      })
+      .addCase(getCurrentUser.rejected, (state) => {
+        state.status = false;
+        state.userData = null;
       });
   },
 });
