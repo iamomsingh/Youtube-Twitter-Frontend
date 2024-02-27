@@ -9,9 +9,36 @@ import { CiSettings } from "react-icons/ci";
 import { MdOutlineContactSupport } from "react-icons/md";
 import Search from "./Search";
 import Button from "../Button";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [toggleMenu, setToggleMenu] = useState(false);
+  const authStatus = useSelector((state) => state.auth.status);
+  const profileImg = useSelector((state) => state.auth.userData?.avatar.url);
+
+  const sidePanelItems = [
+    {
+      icon: <BiLike size={25} />,
+      title: "Liked Videos",
+      url: "/liked-videos",
+    },
+    {
+      icon: <HiOutlineVideoCamera size={25} />,
+      title: "My Content",
+      url: "/my-content",
+    },
+    {
+      icon: <MdOutlineContactSupport size={25} />,
+      title: "Support",
+      url: "/support",
+    },
+    {
+      icon: <CiSettings size={25} />,
+      title: "Settings",
+      url: "/settings",
+    },
+  ];
 
   return (
     <>
@@ -32,14 +59,24 @@ const Navbar = () => {
         </div>
 
         {/* login and signup buutons */}
-        <div className='space-x-2 sm:block hidden'>
-          <Button className='bg-[#222222] border hover:bg-black border-slate-500 sm:px-4 sm:py-2 p-2'>
-            Login
-          </Button>
-          <Button className='font-semibold border hover:bg-[#222222] border-slate-500 sm:px-4 sm:py-2 '>
-            Sign up
-          </Button>
-        </div>
+        {authStatus ? (
+          <div className='w-10 space-x-2 sm:block hidden'>
+            <img src={profileImg} alt='profileImg' className='rounded-full' />
+          </div>
+        ) : (
+          <div className='space-x-2 sm:block hidden'>
+            <Link to={"/login"}>
+              <Button className='bg-[#222222] border hover:bg-black border-slate-500 sm:px-4 sm:py-2 p-2'>
+                Login
+              </Button>
+            </Link>
+            <Link to={"/signup"}>
+              <Button className='font-semibold border hover:bg-[#222222] border-slate-500 sm:px-4 sm:py-2 '>
+                Sign up
+              </Button>
+            </Link>
+          </div>
+        )}
 
         {/* hamburger for smaller screens */}
         <div className='sm:hidden block'>
@@ -51,7 +88,7 @@ const Navbar = () => {
         {/* Side panel for smaller screens */}
         {toggleMenu && (
           <div className='fixed right-0 top-0 text-white flex flex-col border-l-2 h-screen w-4/6 bg-[#0F0F0F] sm-hidden rounded-lg outline-none'>
-            <div className='w-full border-b h-20 flex items-center justify-between mb-2 px-3'>
+            <div className='w-full border-b-2 h-20 flex items-center justify-between mb-2 px-3'>
               <div className='flex text-center gap-2 cursor-pointer'>
                 <IoLogoYoutube size={35} color='red' />
                 <span className='text-lg font-bold'>YouTube</span>
@@ -63,37 +100,34 @@ const Navbar = () => {
               />
             </div>
 
-            <div className='flex flex-col justify-between h-full px-3 py-5'>
+            <div className='flex flex-col justify-between h-full px-3 py-5 '>
               <div className='space-y-5'>
-                <div className='flex items-center cursor-pointer border border-slate-500 rounded-md gap-5 px-3 py-1 hover:bg-purple-500'>
-                  <BiLike size={25} />
-                  <span className='text-lg'>Liked Videos</span>
-                </div>
-
-                <div className='flex items-center cursor-pointer border border-slate-500 rounded-md gap-5 px-3 py-1 hover:bg-purple-500'>
-                  <HiOutlineVideoCamera size={25} />
-                  <span className='text-lg'>My Content</span>
-                </div>
-
-                <div className='flex items-center cursor-pointer border border-slate-500 rounded-md gap-5 px-3 py-1 hover:bg-purple-500'>
-                  <MdOutlineContactSupport size={25} />
-                  <span className='text-lg'>Support</span>
-                </div>
-
-                <div className='flex items-center cursor-pointer border border-slate-500 rounded-md gap-5 px-3 py-1 hover:bg-purple-500'>
-                  <CiSettings size={25} />
-                  <span className='text-lg'>Settings</span>
-                </div>
+                {sidePanelItems.map((item) => (
+                  <Link
+                    to={item.url}
+                    key={item.title}
+                    className='flex items-center cursor-pointer border border-slate-500 rounded-md gap-5 px-3 py-1 hover:bg-purple-500'
+                  >
+                    <div>{item.icon}</div>
+                    <span className='text-lg'>{item.title}</span>
+                  </Link>
+                ))}
               </div>
 
-              <div className='flex flex-col space-y-5 mb-3'>
-                <Button className='bg-[#222222] border hover:bg-purple-500 rounded-md  border-slate-500 py-1 px-3'>
-                  Login
-                </Button>
-                <Button className='font-semibold border border-slate-500 rounded-md hover:bg-purple-500 hover:text-black py-1 px-3'>
-                  Sign up
-                </Button>
-              </div>
+              {!authStatus && (
+                <div className='flex flex-col space-y-5 mb-3'>
+                  <Link to={"/login"}>
+                    <Button className='w-full bg-[#222222] border hover:bg-purple-500 rounded-md  border-slate-500 py-1 px-3'>
+                      Login
+                    </Button>
+                  </Link>
+                  <Link to={"/signup"}>
+                    <Button className='w-full font-semibold border border-slate-500 rounded-md hover:bg-purple-500 hover:text-black py-1 px-3'>
+                      Sign up
+                    </Button>
+                  </Link>
+                </div>
+              )}
             </div>
           </div>
         )}
