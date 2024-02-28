@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Channel, Container } from "../../components/index";
+import { Channel } from "../../components/index.js";
 import { useDispatch, useSelector } from "react-redux";
 import { userChannelProfile } from "../../store/Slices/userSlice";
 
