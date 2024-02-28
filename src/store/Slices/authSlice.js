@@ -24,6 +24,7 @@ export const createAccount = createAsyncThunk("register", async (data) => {
 export const userLogin = createAsyncThunk("login", async (data) => {
   try {
     const res = await axiosInstance.post("/users/login", data);
+    console.log(res.data.data);
     toast.success(res.data.data.message);
     return res.data.data;
   } catch (error) {
@@ -106,6 +107,9 @@ export const authSlice = createSlice({
         state.loading = false;
         state.status = true;
         state.userData = null;
+      })
+      .addCase(getCurrentUser.pending, (state) => {
+        state.loading = true;
       })
       .addCase(getCurrentUser.fulfilled, (state, action) => {
         state.status = true;

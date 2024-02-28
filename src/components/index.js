@@ -6,5 +6,16 @@ import Search from "./Header/Search";
 import Sidebar from "./Header/Sidebar";
 import Login from "./Login";
 import Logo from "./Logo";
+import Channel from "./Channel/Channel";
 
-export { Button, Container, Input, Navbar, Search, Sidebar, Logo, Login };
+export {
+  Button,
+  Container,
+  Input,
+  Navbar,
+  Search,
+  Sidebar,
+  Logo,
+  Login,
+  Channel,
+};
