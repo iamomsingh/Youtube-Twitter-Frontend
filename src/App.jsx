@@ -7,7 +7,7 @@ import {
   Route,
 } from "react-router-dom";
 import Layout from "./Layout.jsx";
-import HomePage from "./pages/HomePage/HomePage.jsx";
+import HomePage from "./pages/HomePage.jsx";
 import Login from "./components/Login.jsx";
 import MyChannel from "./pages/MyChannel/MyChannel.jsx";
 import MyChannelVideos from "./pages/MyChannel/ChannelVideos.jsx";
