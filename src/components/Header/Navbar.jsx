@@ -10,7 +10,7 @@ import { MdOutlineContactSupport } from "react-icons/md";
 import Search from "./Search";
 import Button from "../Button";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const Navbar = () => {
   const [toggleMenu, setToggleMenu] = useState(false);
@@ -101,16 +101,21 @@ const Navbar = () => {
             </div>
 
             <div className='flex flex-col justify-between h-full px-3 py-5 '>
-              <div className='space-y-5'>
+              <div className='flex flex-col gap-5'>
                 {sidePanelItems.map((item) => (
-                  <Link
+                  <NavLink
                     to={item.url}
                     key={item.title}
-                    className='flex items-center cursor-pointer border border-slate-500 rounded-md gap-5 px-3 py-1 hover:bg-purple-500'
+                    onClick={() => setToggleMenu((prev) => !prev)}
+                    className={({ isActive }) =>
+                      isActive ? "bg-purple-500" : ""
+                    }
                   >
-                    <div>{item.icon}</div>
-                    <span className='text-lg'>{item.title}</span>
-                  </Link>
+                    <div className='flex items-center border border-slate-500 gap-5 px-3 py-1 hover:bg-purple-400'>
+                      <div>{item.icon}</div>
+                      <span className='text-lg'>{item.title}</span>
+                    </div>
+                  </NavLink>
                 ))}
               </div>
 

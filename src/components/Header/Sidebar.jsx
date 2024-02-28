@@ -7,7 +7,7 @@ import { IoFolderOutline } from "react-icons/io5";
 import { TbUserCheck } from "react-icons/tb";
 import { CiSettings } from "react-icons/ci";
 import { MdOutlineContactSupport } from "react-icons/md";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const Sidebar = () => {
   const sidebarTopItems = [
@@ -69,16 +69,20 @@ const Sidebar = () => {
     <>
       <div className='sm:block hidden'>
         <div className='text-white lg:w-56 md:w-44 w-16 sm:p-3 p-2 border-slate-600 border-r h-[93vh] flex flex-col justify-between'>
-          <div className='space-y-4 mt-5'>
+          <div className='flex flex-col gap-4 mt-5'>
             {sidebarTopItems.map((item) => (
-              <Link
+              <NavLink
                 to={item.url}
                 key={item.title}
-                className='flex items-center gap-2 justify-center sm:justify-start rounded-lg hover:bg-purple-500 cursor-pointer py-1 px-2 border border-slate-600'
+                className={({ isActive }) => (isActive ? "bg-purple-500" : "")}
               >
-                <div>{item.icon}</div>
-                <span className='text-base hidden md:block'>{item.title}</span>
-              </Link>
+                <div className='flex items-center gap-2 justify-center sm:justify-start rounded-lg hover:bg-purple-500 cursor-pointer py-1 px-2 border border-slate-600'>
+                  <div>{item.icon}</div>
+                  <span className='text-base hidden md:block'>
+                    {item.title}
+                  </span>
+                </div>
+              </NavLink>
             ))}
           </div>
 
@@ -104,14 +108,16 @@ const Sidebar = () => {
       {/* for mobile sidebar is bottom bar*/}
       <div className='border-t-2 text-white h-16 sm:hidden p-1 w-full flex justify-around fixed bottom-0 bg-[#0E0F0F]'>
         {bottomBarItems.map((item) => (
-          <Link
+          <NavLink
             to={item.url}
             key={item.title}
-            className='flex flex-col items-center gap-1 cursor-pointer p-1'
+            className={({ isActive }) => (isActive ? "text-purple-500" : "")}
           >
-            {item.icon}
-            <span className='text-sm'>{item.title}</span>
-          </Link>
+            <div className='flex flex-col items-center gap-1 cursor-pointer p-1'>
+              {item.icon}
+              <span className='text-sm'>{item.title}</span>
+            </div>
+          </NavLink>
         ))}
       </div>
     </>
