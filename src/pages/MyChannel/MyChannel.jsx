@@ -1,7 +1,9 @@
 import React, { useEffect } from "react";
-import { Channel } from "../../components/index.js";
+import { ChannelHeader } from "../../components/index.js";
 import { useDispatch, useSelector } from "react-redux";
 import { userChannelProfile } from "../../store/Slices/userSlice";
+import { ChannelNavigate } from "../../components/index.js";
+import { Outlet } from "react-router-dom";
 
 function MyChannel() {
   const dispatch = useDispatch();
@@ -16,7 +18,7 @@ function MyChannel() {
 
   return (
     <>
-      <Channel
+      <ChannelHeader
         username={channel?.username}
         coverImage={profile?.coverImage.url}
         avatar={profile?.avatar.url}
@@ -24,6 +26,8 @@ function MyChannel() {
         fullName={profile?.fullName}
         subscribersCount={profile?.subscribersCount || 0}
       />
+      <ChannelNavigate />
+      <Outlet />
     </>
   );
 }
