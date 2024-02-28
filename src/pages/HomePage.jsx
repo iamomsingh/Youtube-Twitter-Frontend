@@ -4,10 +4,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllVideos } from "../store/Slices/videoSlice";
 import { Link } from "react-router-dom";
 import { VideoList } from "../components/index";
+import HomeSkeleton from "../skelton/HomeSkelton";
 
 const HomePage = () => {
   const dispatch = useDispatch();
   const videos = useSelector((state) => state.video?.videos?.docs);
+  const loading = useSelector((state) => state.video?.loading);
 
   useEffect(() => {
     dispatch(getAllVideos());
@@ -30,6 +32,7 @@ const HomePage = () => {
           />
         ))}
       </div>
+      {loading && <HomeSkeleton />}
     </Container>
   );
 };

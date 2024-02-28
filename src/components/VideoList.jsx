@@ -1,4 +1,5 @@
 import React from "react";
+import { timeAgo } from "../helpers/time.js";
 
 function VideoList({
   thumbnail,
@@ -16,7 +17,7 @@ function VideoList({
         <div className='relative'>
           <img src={thumbnail} className='object-cover' />
           <span className='absolute bottom-2 right-2 rounded-lg text-sm bg-black py-1 px-2'>
-            {duration}
+            {Math.floor(duration)}
           </span>
         </div>
         <div className='flex items-center py-1 px-2 gap-2'>
@@ -26,7 +27,8 @@ function VideoList({
           <div>
             <h2 className='font-medium'>{title}</h2>
             <div className='text-xs space-x-1 text-slate-400'>
-              <span>{views} Views</span> .<span>{createdAt} years ago</span>
+              <span>{views} Views</span> .
+              <span>{timeAgo(createdAt)} years ago</span>
             </div>
             {channelName && (
               <h2 className='text-xs space-x-1 text-slate-200'>
