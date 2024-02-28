@@ -10,13 +10,14 @@ import Layout from "./Layout.jsx";
 import HomePage from "./pages/HomePage/HomePage.jsx";
 import Login from "./components/Login.jsx";
 import MyChannel from "./pages/MyChannel/MyChannel.jsx";
+import MyChannelVideos from "./pages/MyChannel/ChannelVideos.jsx";
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path='/' element={<Layout />}>
       <Route path='' element={<HomePage />} />
       <Route path='/my-content' element={<MyChannel />}>
-        <Route path='videos' element='' />
+        <Route path='videos' element={<MyChannelVideos />} />
         <Route path='playlists' element='' />
         <Route path='tweets' element='' />
         <Route path='subscribed' element='' />

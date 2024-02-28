@@ -7,6 +7,7 @@ import Sidebar from "./Header/Sidebar";
 import Login from "./Login";
 import Logo from "./Logo";
 import Channel from "./Channel/Channel";
+import VideoList from "./VideoList";
 
 export {
   Button,
@@ -18,4 +19,5 @@ export {
   Logo,
   Login,
   Channel,
+  VideoList,
 };
