@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { getCurrentUser } from "./store/Slices/authSlice.js";
 import { Toaster } from "react-hot-toast";
@@ -11,7 +12,7 @@ import HomePage from "./pages/HomePage.jsx";
 import { Login, SignUp } from "./components/index";
 import MyChannel from "./pages/MyChannel/MyChannel.jsx";
 import MyChannelVideos from "./pages/MyChannel/ChannelVideos.jsx";
-import { useEffect } from "react";
+import History from "./pages/History.jsx";
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
@@ -23,6 +24,7 @@ export const router = createBrowserRouter(
         <Route path='tweets' element='' />
         <Route path='subscribed' element='' />
       </Route>
+      <Route path='/history' element={<History />} />
       <Route path='/login' element={<Login />} />
       <Route path='/signup' element={<SignUp />} />
     </Route>

@@ -19,17 +19,19 @@ const HomePage = () => {
     <Container>
       <div className='text-white mb-20 sm:m-0 max-h-screen w-full grid xl:grid-cols-3 sm:grid-cols-2 grid-cols-1 overflow-y-scroll'>
         {videos?.map((video) => (
-          <VideoList
-            key={video._id}
-            avatar={video.ownerDetails?.avatar.url}
-            duration={video.duration}
-            title={video.title}
-            thumbnail={video.thumbnail?.url}
-            createdAt={video.createdAt}
-            views={video.views}
-            channelName={video.ownerDetails.username}
-            videoId={video._id}
-          />
+          <Link to={`/watch/${video._id}`} key={video._id}>
+            <VideoList
+              key={video._id}
+              avatar={video.ownerDetails?.avatar.url}
+              duration={video.duration}
+              title={video.title}
+              thumbnail={video.thumbnail?.url}
+              createdAt={video.createdAt}
+              views={video.views}
+              channelName={video.ownerDetails.username}
+              channelId={video.owner}
+            />
+          </Link>
         ))}
       </div>
       {loading && <HomeSkeleton />}

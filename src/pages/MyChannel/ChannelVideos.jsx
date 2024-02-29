@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { VideoList } from "../../components/index";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllVideos } from "../../store/Slices/videoSlice";
@@ -12,6 +12,7 @@ function ChannelVideos() {
   useEffect(() => {
     dispatch(getAllVideos(userId));
   }, [dispatch, userId]);
+
   return (
     <>
       <div className='grid lg:grid-cols-3 sm:grid-cols-2 text-white border'>

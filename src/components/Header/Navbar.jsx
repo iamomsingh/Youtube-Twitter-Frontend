@@ -60,8 +60,12 @@ const Navbar = () => {
 
         {/* login and signup buutons */}
         {authStatus ? (
-          <div className='w-10 space-x-2 sm:block hidden'>
-            <img src={profileImg} alt='profileImg' className='rounded-full' />
+          <div className='rounded-full sm:block hidden'>
+            <img
+              src={profileImg}
+              alt='profileImg'
+              className='rounded-full w-10 h-10 object-cover'
+            />
           </div>
         ) : (
           <div className='space-x-2 sm:block hidden'>

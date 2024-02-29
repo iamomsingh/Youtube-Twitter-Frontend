@@ -2,7 +2,11 @@ import React from "react";
 import { Logo, Button, Input } from "./index";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { userLogin, createAccount } from "../store/Slices/authSlice.js";
+import {
+  userLogin,
+  createAccount,
+  getCurrentUser,
+} from "../store/Slices/authSlice.js";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import LoginSkeleton from "../skelton/LoginSkelton.jsx";
@@ -24,9 +28,12 @@ function SignUp() {
       const username = data?.username;
       const password = data?.password;
       const loginResult = await dispatch(userLogin({ username, password }));
+      const user = await dispatch(getCurrentUser());
 
-      if (loginResult?.type === "login/fulfilled") {
+      if (loginResult?.payload && user) {
+        //.type === "login/fulfilled"
         navigate("/"); // /terms&conditions
+        console.log("registered");
       } else {
         navigate("/login");
       }
