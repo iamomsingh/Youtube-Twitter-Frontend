@@ -9,9 +9,9 @@ const initialState = {
 
 export const userChannelProfile = createAsyncThunk(
   "getUserChannelProfile",
-  async (username) => {
+  async (userName) => {
     try {
-      const response = await axiosInstance.get(`/users/c/${username}`);
+      const response = await axiosInstance.get(`/api/v1/users/c/${userName}`);
       console.log(response);
       return response.data.data;
     } catch (error) {

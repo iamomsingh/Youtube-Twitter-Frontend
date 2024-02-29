@@ -12,14 +12,14 @@ function MyChannel() {
 
   useEffect(() => {
     if (channel) {
-      dispatch(userChannelProfile(channel?.username));
+      dispatch(userChannelProfile(channel?.userName));
     }
   }, [dispatch, channel]);
 
   return (
     <>
       <ChannelHeader
-        username={channel?.username}
+        username={channel?.userName}
         coverImage={profile?.coverImage.url}
         avatar={profile?.avatar.url}
         subscribedCount={profile?.channelsSubscribedToCount || 0}

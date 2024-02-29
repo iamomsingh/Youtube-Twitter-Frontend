@@ -12,7 +12,7 @@ const HomePage = () => {
   const loading = useSelector((state) => state.video?.loading);
 
   useEffect(() => {
-    dispatch(getAllVideos());
+    dispatch(getAllVideos({}));
   }, [dispatch]);
 
   return (

@@ -1,18 +1,25 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axiosInstance from "../../helpers/axiosInstance";
 import toast from "react-hot-toast";
+import { BASE_URL } from "../../constants";
 
 const initialState = {
   loading: false,
-  videos: [],
+  uploading: false,
+  uploaded: false,
+  videos: {
+    docs: [],
+    hasNextPage: false,
+  },
+  video: null,
+  publishToggled: false,
 };
 
 export const getAllVideos = createAsyncThunk(
   "getAllVideos",
   async (userId, sortBy, sortType, query, page, limit) => {
     try {
-      const baseURL = "http://localhost:5000/api/v1/video";
-      const url = new URL(baseURL);
+      const url = new URL(`${BASE_URL}/video`);
 
       if (userId) url.searchParams.set("userId", userId);
       if (query) url.searchParams.set("query", query);
@@ -23,7 +30,7 @@ export const getAllVideos = createAsyncThunk(
         url.searchParams.set("sortType", sortType);
       }
 
-      const response = await axiosInstance.get(url.toString());
+      const response = await axiosInstance.get(url);
 
       // console.log(response.data.data.docs);
       return response.data.data;
@@ -44,7 +51,8 @@ const videoSlice = createSlice({
     });
     builder.addCase(getAllVideos.fulfilled, (state, action) => {
       state.loading = false;
-      state.videos = action.payload;
+      state.videos.docs = [...state.videos.docs, ...action.payload.docs];
+      state.videos.hasNextPage = action.payload.hasNextPage;
     });
   },
 });
