@@ -11,7 +11,7 @@ const initialState = {
 export const createAccount = createAsyncThunk("register", async (data) => {
   const formData = new FormData();
   formData.append("avatar", data.avatar[0]);
-  formData.append("username", data.username);
+  formData.append("userName", data.userName);
   formData.append("email", data.email);
   formData.append("password", data.password);
   formData.append("fullName", data.fullName);
@@ -33,8 +33,10 @@ export const createAccount = createAsyncThunk("register", async (data) => {
 export const userLogin = createAsyncThunk("login", async (data) => {
   try {
     const response = await axiosInstance.post("/api/v1/users/login", data);
+    // console.log(response.data.data.user);
     return response.data.data.user;
   } catch (error) {
+    // console.log(error?.response?.data);
     toast.error(error?.response?.data?.error);
     throw error;
   }
@@ -84,8 +86,14 @@ export const changePassword = createAsyncThunk(
 );
 
 export const getCurrentUser = createAsyncThunk("getCurrentUser", async () => {
-  const response = await axiosInstance.get("/api/v1/users/current-user");
-  return response.data.data;
+  try {
+    const response = await axiosInstance.get("/api/v1/users/current-user");
+    // console.log(response.data.data);
+    return response.data.data;
+  } catch (error) {
+    console.log(error);
+    toast.error(error?.response?.data?.error);
+  }
 });
 
 export const updateAvatar = createAsyncThunk("updateAvatar", async (avatar) => {

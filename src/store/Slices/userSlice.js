@@ -9,11 +9,11 @@ const initialState = {
 };
 
 export const userChannelProfile = createAsyncThunk(
-  "getUserChannelProfile",
+  "userChannelProfile",
   async (userName) => {
     try {
       const response = await axiosInstance.get(`/api/v1/users/c/${userName}`);
-      console.log(response);
+      // console.log(response.data.data);
       return response.data.data;
     } catch (error) {
       toast.error(error?.response?.data?.error);
@@ -23,7 +23,7 @@ export const userChannelProfile = createAsyncThunk(
 );
 
 export const userWatchHistory = createAsyncThunk(
-  "getWatchHistory",
+  "userWatchHistory",
   async () => {
     try {
       const response = await axiosInstance.get("/api/v1/users/history");

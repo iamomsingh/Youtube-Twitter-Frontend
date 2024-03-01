@@ -10,16 +10,16 @@ import {
 import Layout from "./Layout.jsx";
 import HomePage from "./pages/HomePage.jsx";
 import { Login, SignUp } from "./components/index";
-import MyChannel from "./pages/MyChannel/MyChannel.jsx";
-import MyChannelVideos from "./pages/MyChannel/ChannelVideos.jsx";
+import Channel from "./pages/Channel/Channel.jsx";
+import ChannelVideos from "./pages/Channel/ChannelVideos.jsx";
 import History from "./pages/History.jsx";
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path='/' element={<Layout />}>
-      <Route path='' element={<HomePage />} />
-      <Route path='/my-content' element={<MyChannel />}>
-        <Route path='videos' element={<MyChannelVideos />} />
+    <Route path='' element={<Layout />}>
+      <Route path='/' element={<HomePage />} />
+      <Route path='/channel/:userName' element={<Channel />}>
+        <Route path='videos' element={<ChannelVideos />} />
         <Route path='playlists' element='' />
         <Route path='tweets' element='' />
         <Route path='subscribed' element='' />

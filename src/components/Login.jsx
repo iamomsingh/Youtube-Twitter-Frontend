@@ -29,7 +29,6 @@ function Login() {
 
     if (user && response?.payload) {
       navigate("/");
-      console.log("get user");
     }
   };
 

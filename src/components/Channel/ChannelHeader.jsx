@@ -1,15 +1,24 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Button } from "../index";
 import { NavLink } from "react-router-dom";
 
 function ChannelHeader({
   coverImage,
   avatar,
-  username,
+  userName,
   fullName,
   subscribersCount,
   subscribedCount,
+  isSubscribed,
+  channelId,
+  edit,
 }) {
+  // const [toogleSubscribe, setToggleSubscribe] = useState("");
+  // if (isSubscribed) {
+  //   setToggleSubscribe(true);
+  // }
+
+  // useEffect(() => {}, [toogleSubscribe]);
   return (
     <>
       <div className='w-full text-white'>
@@ -38,7 +47,7 @@ function ChannelHeader({
           </div>
           <div className='w-full md:h-24 sm:h-20 flex justify-between items-start px-1'>
             <div>
-              <h1 className='text-xl font-bold'>{username}</h1>
+              <h1 className='text-xl font-bold'>{userName}</h1>
               <h3 className='text-sm text-slate-400'>@{fullName}</h3>
               <div className='flex gap-1'>
                 <p className='text-xs text-slate-400'>
@@ -49,11 +58,11 @@ function ChannelHeader({
                 </p>
               </div>
             </div>
-            <div>
+            {/* <div onClick={() => setToggleSubscribe((prev) => !prev)}>
               <Button className='border-slate-500 hover:scale-110 transition-all text-black font-bold px-4 py-1 bg-purple-500'>
-                Edit
+                {toogleSubscribe ? "Subscribed" : "Subscribe"}
               </Button>
-            </div>
+            </div> */}
           </div>
         </section>
       </div>
