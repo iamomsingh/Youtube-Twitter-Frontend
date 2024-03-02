@@ -168,6 +168,9 @@ const videoSlice = createSlice({
       })
       .addCase(deleteAvideo.fulfilled, (state, action) => {
         state.loading = false;
+        state.videos.docs = state.videos.docs.filter(
+          (video) => video._id !== action.payload.videoId
+        );
       })
       .addCase(togglePublishedStatus.fulfilled, (state) => {
         state.publishToggled = !state.publishToggled;
