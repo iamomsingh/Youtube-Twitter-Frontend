@@ -9,7 +9,7 @@ import {
 } from "react-router-dom";
 import Layout from "./Layout.jsx";
 import HomePage from "./pages/HomePage.jsx";
-import { Login, SignUp } from "./components/index";
+import { AuthLayout, Login, SignUp } from "./components/index";
 import Channel from "./pages/Channel/Channel.jsx";
 import ChannelVideos from "./pages/Channel/ChannelVideos.jsx";
 import History from "./pages/History.jsx";
@@ -17,16 +17,19 @@ import History from "./pages/History.jsx";
 export const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path='' element={<Layout />}>
-      <Route path='/' element={<HomePage />} />
-      <Route path='/channel/:userName' element={<Channel />}>
-        <Route path='videos' element={<ChannelVideos />} />
-        <Route path='playlists' element='' />
-        <Route path='tweets' element='' />
-        <Route path='subscribed' element='' />
-      </Route>
-      <Route path='/history' element={<History />} />
       <Route path='/login' element={<Login />} />
       <Route path='/signup' element={<SignUp />} />
+      <Route path='/' element={<HomePage />} />
+
+      <Route path='' element={<AuthLayout />}>
+        <Route path='/channel/:userName' element={<Channel />}>
+          <Route path='videos' element={<ChannelVideos />} />
+          <Route path='playlists' element='' />
+          <Route path='tweets' element='' />
+          <Route path='subscribed' element='' />
+        </Route>
+        <Route path='/history' element={<History />} />
+      </Route>
     </Route>
   )
 );

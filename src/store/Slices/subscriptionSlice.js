@@ -70,7 +70,7 @@ const subscriptionSlice = createSlice({
       .addCase(getSubscribedChannels.pending, (state) => {
         state.loading = true;
       })
-      .addCase(getUserChannelSubscribers.fulfilled, (state, action) => {
+      .addCase(getSubscribedChannels.fulfilled, (state, action) => {
         state.loading = false;
         state.mySubscriptions = action.payload.filter(
           (subscription) => subscription?.subscribedChannel?.latestVideo

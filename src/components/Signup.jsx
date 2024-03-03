@@ -46,7 +46,7 @@ function SignUp() {
 
   return (
     <>
-      <div className='w-full h-screen text-white p-3 flex justify-center items-start sm:mt-8'>
+      <div className=' fixed inset-0 text-white px-3 flex justify-center items-center bg-black bg-opacity-75 z-50'>
         <div className='flex max-w-5xl flex-col space-y-5 justify-center items-center border border-slate-600 p-3'>
           <div className='flex items-center gap-2 mt-5'>
             <Logo />

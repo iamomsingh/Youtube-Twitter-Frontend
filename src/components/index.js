@@ -11,6 +11,8 @@ import ChannelHeader from "./Channel/ChannelHeader";
 import ChannelNavigate from "./Channel/ChannelNavigate";
 import VideoList from "./VideoList";
 import SignUp from "./Signup";
+import LoginPopup from "./LoginPopup";
+import AuthLayout from "./AuthLayout";
 
 export {
   Button,
@@ -26,4 +28,6 @@ export {
   VideoList,
   SignUp,
   NoVideosFound,
+  LoginPopup,
+  AuthLayout,
 };
