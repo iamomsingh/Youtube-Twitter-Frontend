@@ -34,10 +34,13 @@ export const userLogin = createAsyncThunk("login", async (data) => {
   try {
     const response = await axiosInstance.post("/api/v1/users/login", data);
     // console.log(response.data.data.user);
+    if (response.data?.success) {
+      toast.success(response.data.message);
+    }
     return response.data.data.user;
   } catch (error) {
     // console.log(error?.response?.data);
-    toast.error(error?.response?.data?.error);
+    toast.error("Login Unsuccessfull!!");
     throw error;
   }
 });
@@ -45,9 +48,12 @@ export const userLogin = createAsyncThunk("login", async (data) => {
 export const userLogout = createAsyncThunk("logout", async () => {
   try {
     const response = await axiosInstance.post("/api/v1/users/logout");
+    if (response.data?.success) {
+      toast.success(response.data.message);
+    }
     return response.data;
   } catch (error) {
-    toast.error(error?.response?.data?.error);
+    toast.error("Logout unsuccessfull.");
     throw error;
   }
 });
@@ -76,7 +82,9 @@ export const changePassword = createAsyncThunk(
         "/api/v1/users/change-password",
         data
       );
-      toast.success(response.data?.message);
+      if (response.data?.success) {
+        toast.success(response.data.message);
+      }
       return response.data;
     } catch (error) {
       toast.error(error?.response?.data?.error);
@@ -102,7 +110,9 @@ export const updateAvatar = createAsyncThunk("updateAvatar", async (avatar) => {
       "/api/v1/users/update-avatar",
       avatar
     );
-    toast.success("Updated details successfully!!!");
+    if (response.data?.success) {
+      toast.success(response.data.message);
+    }
     return response.data.data;
   } catch (error) {
     toast.error(error?.response?.data?.error);
@@ -118,7 +128,9 @@ export const updateCoverImg = createAsyncThunk(
         "/api/v1/users/update-coverImg",
         coverImage
       );
-      toast.success(response.data?.message);
+      if (response.data?.success) {
+        toast.success(response.data.message);
+      }
       return response.data.data;
     } catch (error) {
       toast.error(error?.response?.data?.error);
@@ -135,7 +147,9 @@ export const updateUserDetails = createAsyncThunk(
         "/api/v1/users/update-user",
         data
       );
-      toast.success("Updated details successfully!!!");
+      if (response.data?.success) {
+        toast.success(response.data.message);
+      }
       return response.data;
     } catch (error) {
       toast.error(error?.response?.data?.error);

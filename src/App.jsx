@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { getCurrentUser } from "./store/Slices/authSlice.js";
-import { Toaster } from "react-hot-toast";
+// import { Toaster } from "react-hot-toast";
 import {
   createBrowserRouter,
   createRoutesFromElements,
@@ -39,7 +39,7 @@ function App() {
   }, [dispatch]);
   return (
     <>
-      <Toaster
+      {/* <Toaster
         position='top-right'
         reverseOrder={true}
         toastOptions={{
@@ -51,7 +51,7 @@ function App() {
           },
           duration: 2000,
         }}
-      />
+      /> */}
     </>
   );
 }

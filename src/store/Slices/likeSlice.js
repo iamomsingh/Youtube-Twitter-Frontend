@@ -15,7 +15,7 @@ export const getLikedVideos = createAsyncThunk("getLikedVideos", async () => {
     const response = await axiosInstance.get(`/api/v1/likes/videos`);
     return response.data.data;
   } catch (error) {
-    toast.error(error?.response?.data?.error);
+    toast.error("Failed to change Like stats");
     throw error;
   }
 });
@@ -29,7 +29,7 @@ export const toggleVideoLike = createAsyncThunk(
       );
       return response.data.data;
     } catch (error) {
-      toast.error(error?.response?.data?.error);
+      toast.error("Failed to change Like stats");
       throw error;
     }
   }
@@ -44,7 +44,7 @@ export const toggleTweetLike = createAsyncThunk(
       );
       return response.data.data;
     } catch (error) {
-      toast.error(error?.response?.data?.error);
+      toast.error("Failed to change Like stats");
       throw error;
     }
   }
@@ -59,7 +59,7 @@ export const toggleCommentLike = createAsyncThunk(
       );
       return response.data.data;
     } catch (error) {
-      toast.error(error?.response?.data?.error);
+      toast.error("Failed to change Like stats");
       throw error;
     }
   }

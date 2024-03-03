@@ -32,9 +32,12 @@ export const getAllVideos = createAsyncThunk(
       }
       const response = await axiosInstance.get(url);
       console.log(response);
+      if (response.data?.success) {
+        toast.success(response.data?.message);
+      }
       return response.data.data;
     } catch (error) {
-      toast.error(error?.response?.data?.error);
+      toast.error("video fetched unsuccessfull..");
       throw error;
     }
   }
@@ -47,7 +50,7 @@ export const getVideoById = createAsyncThunk(
       const response = await axiosInstance.get(`/api/v1/video/v/${videoId}`);
       return response.data.data;
     } catch (error) {
-      toast.error(error?.response?.data?.error);
+      toast.error("Failed to fetch video!");
       throw error;
     }
   }
@@ -65,7 +68,7 @@ export const publishAvideo = createAsyncThunk("publishAvideo", async (data) => {
     toast.success(response?.data?.message);
     return response.data?.data;
   } catch (error) {
-    toast.error(error?.response?.data?.error);
+    toast.error("Failed to publish video");
     throw error;
   }
 });
@@ -84,7 +87,7 @@ export const updateAvideo = createAsyncThunk(
       toast.success(response?.data?.message);
       return response.data?.data;
     } catch (error) {
-      toast.error(error?.response?.data?.error);
+      toast.error("Failed to edit video");
       throw error;
     }
   }
@@ -98,7 +101,7 @@ export const deleteAvideo = createAsyncThunk(
       toast.success(response?.data?.message);
       return response.data?.data;
     } catch (error) {
-      toast.error(error?.response?.data?.error);
+      toast.error("Failed to delete video");
       throw error;
     }
   }
@@ -114,7 +117,7 @@ export const togglePublishedStatus = createAsyncThunk(
       toast.success(response?.data?.message);
       return response.data?.data.isPublished;
     } catch (error) {
-      toast.error(error?.response?.data?.error);
+      toast.error("video stats unsuccessfull");
       throw error;
     }
   }
@@ -177,5 +180,7 @@ const videoSlice = createSlice({
       });
   },
 });
+
+export const { updateUploadState, makeVideosNull } = videoSlice.actions;
 
 export default videoSlice.reducer;

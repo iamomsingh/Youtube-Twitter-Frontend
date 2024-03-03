@@ -18,7 +18,7 @@ export const getUserChannelSubscribers = createAsyncThunk(
       );
       return response.data.data;
     } catch (error) {
-      toast.error(error?.response?.data?.error);
+      toast.error("Failed to get subscribers");
       throw error;
     }
   }
@@ -33,7 +33,7 @@ export const getSubscribedChannels = createAsyncThunk(
       );
       return response.data.data;
     } catch (error) {
-      toast.error(error?.response?.data?.error);
+      toast.error("Failed to get subscription");
       throw error;
     }
   }
@@ -48,7 +48,7 @@ export const toggleSubscription = createAsyncThunk(
       );
       return response.data.data.subscribed;
     } catch (error) {
-      toast.error(error?.response?.data?.error);
+      toast.error("Failed to change stats");
       throw error;
     }
   }

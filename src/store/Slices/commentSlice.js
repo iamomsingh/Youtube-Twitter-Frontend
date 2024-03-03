@@ -19,7 +19,8 @@ export const createAComment = createAsyncThunk(
       });
       return response.data?.data;
     } catch (error) {
-      toast.error(error?.response?.data?.error);
+      toast.error("Failed to create comment");
+      //error?.response?.data?.error
       throw error;
     }
   }
@@ -36,7 +37,7 @@ export const editAComment = createAsyncThunk(
       toast.success(response.data?.message);
       return response?.data?.data;
     } catch (error) {
-      toast.error(error?.response?.data?.error);
+      toast.error("Failed to edit comment");
       throw error;
     }
   }
@@ -52,7 +53,8 @@ export const deleteAComment = createAsyncThunk(
       toast.success(response.data?.message);
       return response?.data?.data;
     } catch (error) {
-      toast.error(error?.response?.data?.error);
+      toast.error("Failed to delete comment");
+      //error?.response?.data?.error
       throw error;
     }
   }
@@ -69,7 +71,7 @@ export const getVideoComments = createAsyncThunk(
       const response = await axiosInstance.get(url);
       return response?.data?.data;
     } catch (error) {
-      toast.error(error?.response?.data?.error);
+      toast.error("Failed to fetch video comments");
       throw error;
     }
   }
