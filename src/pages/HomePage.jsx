@@ -1,18 +1,29 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllVideos } from "../store/Slices/videoSlice";
-import { Link } from "react-router-dom";
-import { VideoList, Container } from "../components";
+import { getAllVideos, makeVideosNull } from "../store/Slices/videoSlice";
+import { VideoList, Container, NoVideosFound } from "../components";
 import HomeSkeleton from "../skelton/HomeSkelton";
 
 const HomePage = () => {
   const dispatch = useDispatch();
   const videos = useSelector((state) => state.video?.videos?.docs);
-  const loading = useSelector((state) => state.video?.loading);
+  const { loading } = useSelector((state) => state.video);
+  const { hasNextPage } = useSelector((state) => state.video?.videos);
+
+  const [page, setPage] = useState(1);
 
   useEffect(() => {
     dispatch(getAllVideos({}));
+
+    return () => dispatch(makeVideosNull());
   }, [dispatch]);
+
+  const fetchMoreVideos = useCallback(() => {
+    if (hasNextPage) {
+      dispatch(getAllVideos({ page: page + 1 }));
+      setPage((prev) => prev + 1);
+    }
+  }, [page, hasNextPage, dispatch]);
 
   return (
     <Container>
@@ -20,13 +31,13 @@ const HomePage = () => {
         {videos?.map((video) => (
           <VideoList
             key={video._id}
-            avatar={video.ownerDetails?.avatar.url}
+            avatar={video.ownerDetails?.avatar?.url}
             duration={video.duration}
             title={video.title}
             thumbnail={video.thumbnail?.url}
             createdAt={video.createdAt}
             views={video.views}
-            channelName={video.ownerDetails.username}
+            channelName={video.ownerDetails.userName}
             videoId={video._id}
           />
         ))}

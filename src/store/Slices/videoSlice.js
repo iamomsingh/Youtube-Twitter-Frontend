@@ -17,24 +17,21 @@ const initialState = {
 
 export const getAllVideos = createAsyncThunk(
   "getAllVideos",
-  async (userId, sortBy, sortType, query, page, limit) => {
+  async ({ userId, sortBy, sortType, query, page, limit }) => {
     try {
-      // const url = new URL(`${BASE_URL}/video`);
-      const url = new URL("/api/v1/video");
+      // const url = new URL();
+      // const url = new URL(`/api/v1/video`);
 
-      if (userId) url.searchParams.set("userId", userId);
-      if (query) url.searchParams.set("query", query);
-      if (page) url.searchParams.set("page", page);
-      if (limit) url.searchParams.set("limit", limit);
-      if (sortBy && sortType) {
-        url.searchParams.set("sortBy", sortBy);
-        url.searchParams.set("sortType", sortType);
-      }
-      const response = await axiosInstance.get(url);
-      console.log(response);
-      if (response.data?.success) {
-        toast.success(response.data?.message);
-      }
+      // if (userId) url.searchParams.set("userId", userId);
+      // if (query) url.searchParams.set("query", query);
+      // if (page) url.searchParams.set("page", page);
+      // if (limit) url.searchParams.set("limit", limit);
+      // if (sortBy && sortType) {
+      //   url.searchParams.set("sortBy", sortBy);
+      //   url.searchParams.set("sortType", sortType);
+      // }
+      const response = await axiosInstance.get(`/api/v1/video`);
+      console.log(response.data.data);
       return response.data.data;
     } catch (error) {
       toast.error("video fetched unsuccessfull..");
@@ -47,7 +44,8 @@ export const getVideoById = createAsyncThunk(
   "getVideoById",
   async (videoId) => {
     try {
-      const response = await axiosInstance.get(`/api/v1/video/v/${videoId}`);
+      const response = await axiosInstance.get(`/api/v1/video/${videoId}`);
+      console.log(response.data.data);
       return response.data.data;
     } catch (error) {
       toast.error("Failed to fetch video!");

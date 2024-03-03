@@ -13,6 +13,7 @@ import VideoList from "./VideoList";
 import SignUp from "./Signup";
 import LoginPopup from "./LoginPopup";
 import AuthLayout from "./AuthLayout";
+import Video from "./Video";
 
 export {
   Button,
@@ -30,4 +31,5 @@ export {
   NoVideosFound,
   LoginPopup,
   AuthLayout,
+  Video,
 };

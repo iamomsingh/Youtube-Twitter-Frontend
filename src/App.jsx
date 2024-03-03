@@ -13,6 +13,7 @@ import { AuthLayout, Login, SignUp } from "./components/index";
 import Channel from "./pages/Channel/Channel.jsx";
 import ChannelVideos from "./pages/Channel/ChannelVideos.jsx";
 import History from "./pages/History.jsx";
+import VideoDetail from "./pages/VideoDetail.jsx";
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
@@ -20,6 +21,7 @@ export const router = createBrowserRouter(
       <Route path='/login' element={<Login />} />
       <Route path='/signup' element={<SignUp />} />
       <Route path='/' element={<HomePage />} />
+      <Route path='/watch/:videoId' element={<VideoDetail />} />
 
       <Route path='' element={<AuthLayout />}>
         <Route path='/channel/:userName' element={<Channel />}>
