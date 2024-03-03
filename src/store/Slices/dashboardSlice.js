@@ -21,18 +21,21 @@ export const getChannelStats = createAsyncThunk("getChannelStats", async () => {
   }
 });
 
-export const getChannelVideos = createSlice("getChannelVideos", async () => {
-  try {
-    const response = await axiosInstance.get("/api/v1/dashboard/videos");
-    if (response.data?.success) {
-      toast.success(response.data.message);
+export const getChannelVideos = createAsyncThunk(
+  "getChannelVideos",
+  async () => {
+    try {
+      const response = await axiosInstance.get("/api/v1/dashboard/videos");
+      if (response.data?.success) {
+        toast.success(response.data.message);
+      }
+      return response.data.data;
+    } catch (error) {
+      toast.error("channel videos fetched unsuccessfull!!");
+      throw error;
     }
-    return response.data.data;
-  } catch (error) {
-    toast.error("channel videos fetched unsuccessfull!!");
-    throw error;
   }
-});
+);
 
 const dashboardSlice = createSlice({
   name: "dashboard",
