@@ -18,6 +18,9 @@ import Description from "./Description";
 import Like from "./Like";
 import TweetAndComment from "./TweetAndComment";
 import InfiniteScroll from "./InfiniteScroll";
+import CommentList from "./CommentList";
+import DeleteConfirmation from "./DeleteConfirmation";
+import Edit from "./Edit";
 
 export {
   Button,
@@ -40,4 +43,7 @@ export {
   Like,
   TweetAndComment,
   InfiniteScroll,
+  CommentList,
+  DeleteConfirmation,
+  Edit,
 };

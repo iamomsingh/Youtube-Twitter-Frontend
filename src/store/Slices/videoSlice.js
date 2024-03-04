@@ -31,7 +31,7 @@ export const getAllVideos = createAsyncThunk(
       //   url.searchParams.set("sortType", sortType);
       // }
       const response = await axiosInstance.get(`/api/v1/video`);
-      console.log(response.data.data);
+      // console.log(response.data.data);
       return response.data.data;
     } catch (error) {
       toast.error("video fetched unsuccessfull..");
@@ -45,7 +45,7 @@ export const getVideoById = createAsyncThunk(
   async (videoId) => {
     try {
       const response = await axiosInstance.get(`/api/v1/video/${videoId}`);
-      console.log(response.data.data);
+      // console.log(response.data.data);
       return response.data.data;
     } catch (error) {
       toast.error("Failed to fetch video!");
