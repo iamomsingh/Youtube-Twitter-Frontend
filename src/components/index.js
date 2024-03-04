@@ -16,6 +16,8 @@ import AuthLayout from "./AuthLayout";
 import Video from "./Video";
 import Description from "./Description";
 import Like from "./Like";
+import TweetAndComment from "./TweetAndComment";
+import InfiniteScroll from "./InfiniteScroll";
 
 export {
   Button,
@@ -36,4 +38,6 @@ export {
   Video,
   Description,
   Like,
+  TweetAndComment,
+  InfiniteScroll,
 };
