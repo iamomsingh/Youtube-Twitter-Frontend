@@ -14,6 +14,8 @@ import SignUp from "./Signup";
 import LoginPopup from "./LoginPopup";
 import AuthLayout from "./AuthLayout";
 import Video from "./Video";
+import Description from "./Description";
+import Like from "./Like";
 
 export {
   Button,
@@ -32,4 +34,6 @@ export {
   LoginPopup,
   AuthLayout,
   Video,
+  Description,
+  Like,
 };
