@@ -70,6 +70,7 @@ export const getVideoComments = createAsyncThunk(
     // if (limit) url.searchParams.set("limit", limit);
 
     try {
+      //
       const response = await axiosInstance.get(`/api/v1/comment/${videoId}`);
       return response?.data?.data;
     } catch (error) {
@@ -98,23 +99,11 @@ const commentSlice = createSlice({
         state.totalComments = action.payload.totalDocs;
         state.hasNextPage = action.payload.hasNextPage;
       })
-      // .addCase(createAComment.pending, (state) => {
-      //   state.loading = true;
-      // })
       .addCase(createAComment.fulfilled, (state, action) => {
         state.loading = false;
         state.comments.unshift(action.payload);
         state.totalComments++;
       })
-      // .addCase(editAComment.pending, (state) => {
-      //   state.loading = true;
-      // })
-      // .addCase(editAComment.fulfilled, (state) => {
-      //   state.loading = false;
-      // })
-      // .addCase(deleteAComment.pending, (state) => {
-      //   state.loading = true;
-      // })
       .addCase(deleteAComment.fulfilled, (state) => {
         state.loading = false;
         state.comments = state.comments.filter(

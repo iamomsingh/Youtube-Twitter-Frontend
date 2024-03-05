@@ -9,6 +9,10 @@ import {
   TweetAndComment,
   Video,
 } from "../components";
+import {
+  cleanUpComments,
+  getVideoComments,
+} from "../store/Slices/commentSlice";
 
 const VideoDetail = () => {
   const dispatch = useDispatch();
@@ -27,6 +31,7 @@ const VideoDetail = () => {
   useEffect(() => {
     if (videoId) {
       dispatch(getVideoById(videoId));
+      dispatch(getVideoComments({ videoId }));
     }
   }, [dispatch, videoId]);
 
@@ -59,7 +64,7 @@ const VideoDetail = () => {
       />
       {/* <InfiniteScroll fetchMore={fetchMoreComments} hasNextPage={hasNextPage}> */}
       <div className='w-full sm:max-w-4xl'>
-        {video.comments?.map((comment) => (
+        {comments?.map((comment) => (
           <CommentList
             key={comment?._id}
             avatar={comment?.owner?.avatar?.url}
@@ -72,11 +77,11 @@ const VideoDetail = () => {
             userName={comment?.owner?.userName}
           />
         ))}
-        {loading && (
+        {/* {loading && (
           <div className='w-full flex justify-center items-center'>
             <Spinner width={10} />
           </div>
-        )}
+        )} */}
       </div>
       {/* </InfiniteScroll> */}
     </>
