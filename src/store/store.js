@@ -7,7 +7,8 @@ import dashboardSliceReducer from "./Slices/dashboardSlice.js";
 import likeSliceReducer from "./Slices/dashboardSlice.js";
 import playlistSliceReducer from "./Slices/playlistSlice.js";
 import subscriptionSliceReducer from "./Slices/subscriptionSlice.js";
-import tweetSliceReducer from "./Slices/tweetSlice.js";
+import tweetSlice from "./Slices/tweetSlice.js";
+// import tweetSliceReducer from "./Slices/tweetSlice.js";
 
 const store = configureStore({
   reducer: {
@@ -19,7 +20,7 @@ const store = configureStore({
     like: likeSliceReducer,
     playlist: playlistSliceReducer,
     subscription: subscriptionSliceReducer,
-    tweet: tweetSliceReducer,
+    tweet: tweetSlice,
   },
 });
 

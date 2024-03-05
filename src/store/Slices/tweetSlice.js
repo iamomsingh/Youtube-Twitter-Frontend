@@ -6,7 +6,7 @@ const initialState = {
   loading: false,
   tweets: [],
 };
-
+console.log(initialState.tweets);
 export const createTweet = createAsyncThunk("createTweet", async (content) => {
   try {
     const response = await axiosInstance.post("/api/v1/tweet", content);
@@ -59,7 +59,7 @@ export const getUserTweets = createAsyncThunk(
   "getUserTweets",
   async (userId) => {
     try {
-      const response = await axiosInstance.get(`/appi/v1/tweet/user/${userId}`);
+      const response = await axiosInstance.get(`/api/v1/tweet/user/${userId}`);
       if (response.data?.success) {
         toast.success(response.data.message);
       }
@@ -72,17 +72,14 @@ export const getUserTweets = createAsyncThunk(
 );
 
 const tweetSlice = createSlice({
-  name: "tweetSlice",
+  name: "tweet",
   initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(createTweet.pending, (state) => {
-        state.loading = true;
-      })
       .addCase(createTweet.fulfilled, (state, action) => {
         state.loading = false;
-        state.tweets = state.tweets.unshift(action.payload);
+        state.tweets.unshift(action.payload);
       })
       .addCase(getUserTweets.pending, (state) => {
         state.loading = true;
@@ -91,24 +88,15 @@ const tweetSlice = createSlice({
         state.loading = false;
         state.tweets = action.payload;
       })
-      .addCase(editTweet.pending, (state) => {
-        state.loading = true;
-      })
-      .addCase(editTweet.fulfilled, (state) => {
-        state.loading = false;
-      })
-      .addCase(deleteTweet.pending, (state) => {
-        state.loading = true;
-      })
       .addCase(deleteTweet.fulfilled, (state, action) => {
         state.loading = false;
         state.tweets = state.tweets.filter(
-          (tweet) => tweet._id !== action.payload.tweetId
+          (tweet) => tweet._id !== action.payload
         );
       });
   },
 });
 
-export const {} = tweetSlice.actions;
+export const { addTweet } = tweetSlice.actions;
 
 export default tweetSlice.reducer;

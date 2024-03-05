@@ -25,6 +25,7 @@ const VideoDetail = () => {
     (state) => state.comment
   );
   const { status, userData } = useSelector((state) => state.auth);
+  const userId = useSelector((state) => state.user?.profileData?._id);
   const [page, setPage] = useState(1);
 
   useEffect(() => {
@@ -68,12 +69,15 @@ const VideoDetail = () => {
         <div className='text-white font-semibold sm:px-5 px-3'>
           {totalComments} Comments
         </div>
-        <TweetAndComment
-          comment={true}
-          videoId={video?._id}
-          authStatus={status}
-          profileImg={userData?.avatar.url}
-        />
+
+        {status && (
+          <TweetAndComment
+            comment={true}
+            videoId={video?._id}
+            profileImg={userData?.avatar?.url}
+          />
+        )}
+
         <InfiniteScroll
           fetchMore={fetchMoreComments}
           hasNextPage={hasNextPage}

@@ -22,6 +22,7 @@ import CommentList from "./CommentList";
 import DeleteConfirmation from "./DeleteConfirmation";
 import Edit from "./Edit";
 import Spinner from "./Spinner";
+import TweetsList from "./TweetsList";
 
 export {
   Button,
@@ -48,4 +49,5 @@ export {
   DeleteConfirmation,
   Edit,
   Spinner,
+  TweetsList,
 };
