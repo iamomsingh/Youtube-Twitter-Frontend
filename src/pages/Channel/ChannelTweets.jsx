@@ -20,20 +20,19 @@ const ChannelTweets = () => {
       {userData?._id === userId && (
         <TweetAndComment tweet={true} profileImg={userData?.avatar?.url} />
       )}
-      <div className='w-full sm:max-w-6xl flex flex-col justify-center items-center mx-8'>
-        {tweets?.map((tweet) => (
-          <TweetsList
-            key={tweet?._id}
-            avatar={tweet?.ownerDetails?.avatar.url}
-            content={tweet?.content}
-            createdAt={tweet?.createdAt}
-            likesCount={tweet?.likesCount}
-            tweetId={tweet?._id}
-            userName={tweet?.ownerDetails?.userName}
-            isLiked={tweet?.isLiked}
-          />
-        ))}
-      </div>
+
+      {tweets?.map((tweet) => (
+        <TweetsList
+          key={tweet?._id}
+          avatar={tweet?.ownerDetails?.avatar.url}
+          content={tweet?.content}
+          createdAt={tweet?.createdAt}
+          likesCount={tweet?.likesCount}
+          tweetId={tweet?._id}
+          userName={tweet?.ownerDetails?.userName}
+          isLiked={tweet?.isLiked}
+        />
+      ))}
     </>
   );
 };

@@ -78,7 +78,7 @@ const CommentList = ({
                 />
 
                 {editState.isOpen && (
-                  <div className='border bg-[#222222] text-lg border-slate-600 absolute text-center left-2 rounded-lg'>
+                  <div className='border bg-[#222222] text-lg border-slate-600 absolute text-center right-2 rounded-lg'>
                     <ul>
                       <li
                         className='hover:opacity-50  px-8 cursor-pointer border-b border-slate-600'

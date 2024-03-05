@@ -24,10 +24,9 @@ export const editTweet = createAsyncThunk(
   "editTweet",
   async ({ tweetId, content }) => {
     try {
-      const response = await axiosInstance.patch(
-        `/api/v1/tweet/${tweetId}`,
-        content
-      );
+      const response = await axiosInstance.patch(`/api/v1/tweet/${tweetId}`, {
+        content,
+      });
       if (response.data?.success) {
         toast.success(response.data.message);
       }
@@ -60,9 +59,9 @@ export const getUserTweets = createAsyncThunk(
   async (userId) => {
     try {
       const response = await axiosInstance.get(`/api/v1/tweet/user/${userId}`);
-      if (response.data?.success) {
-        toast.success(response.data.message);
-      }
+      // if (response.data?.success) {
+      //   toast.success(response.data.message);
+      // }
       return response.data.data;
     } catch (error) {
       toast.error("Failed to fetch user tweet");

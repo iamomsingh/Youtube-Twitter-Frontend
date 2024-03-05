@@ -9,17 +9,22 @@ import {
 
 function Like({ isLiked, likesCount = 0, tweetId, commentId, videoId, size }) {
   const dispatch = useDispatch();
-  const [localIsLiked, setLocalIsLiked] = useState(isLiked);
+  const [localIsLiked, setLocalIsLiked] = useState(!isLiked);
+  const [localIsDisliked, setLocalIsDisliked] = useState(isLiked);
   const [localLikesCount, setLocalLikesCount] = useState(likesCount);
 
   const handleLikeToggle = () => {
     if (localIsLiked) {
       setLocalLikesCount((prev) => prev - 1);
+      setLocalIsLiked((prev) => !prev);
     } else {
       setLocalLikesCount((prev) => prev + 1);
+      setLocalIsLiked((prev) => !prev);
     }
 
-    setLocalIsLiked((prev) => !prev);
+    if (localIsDisliked) {
+      setLocalIsDisliked((prev) => !prev);
+    }
 
     if (tweetId) {
       dispatch(toggleTweetLike(tweetId));
@@ -31,6 +36,17 @@ function Like({ isLiked, likesCount = 0, tweetId, commentId, videoId, size }) {
       dispatch(toggleVideoLike(videoId));
     }
   };
+
+  const handleDislikeToggle = () => {
+    if (localIsLiked) {
+      setLocalLikesCount((prev) => prev - 1);
+      setLocalIsLiked((prev) => !prev);
+      setLocalIsDisliked((prev) => !prev);
+    } else {
+      setLocalIsDisliked((prev) => !prev);
+    }
+  };
+
   useEffect(() => {
     setLocalIsLiked(isLiked);
     setLocalLikesCount(likesCount);
@@ -45,7 +61,13 @@ function Like({ isLiked, likesCount = 0, tweetId, commentId, videoId, size }) {
         />
         <span className='text-xs mr-3'>{localLikesCount}</span>
         <span className='text-slate-400 mx-0.5'>|</span>
-        <BiSolidDislike size={size} />
+        <BiSolidDislike
+          size={size}
+          onClick={handleDislikeToggle}
+          className={`cursor-pointer ${
+            localIsDisliked ? "text-purple-500" : ""
+          }`}
+        />
       </div>
     </>
   );

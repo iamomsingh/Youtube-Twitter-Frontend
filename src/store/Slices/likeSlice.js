@@ -5,9 +5,6 @@ import toast from "react-hot-toast";
 const initialState = {
   loading: false,
   likedVideos: [],
-  //   toggleVideoLike: false,
-  //   toggleCommentLike: false,
-  //   toggleTweetLike: false,
 };
 
 export const getLikedVideos = createAsyncThunk("getLikedVideos", async () => {
@@ -78,17 +75,6 @@ const likeSlice = createSlice({
         state.loading = false;
         state.likedVideos = action.payload;
       });
-    //Not required
-
-    //   .addCase(toggleVideoLike.fulfilled, (state, action) => {
-    //     state.toggleVideoLike = !state.toggleVideoLike;
-    //   })
-    //   .addCase(toggleCommentLike.fulfilled, (state) => {
-    //     state.toggleCommentLike = !state.toggleCommentLike;
-    //   })
-    //   .addCase(toggleTweetLike.fulfilled, (state) => {
-    //     state.toggleTweetLike = !state.toggleTweetLike;
-    //   });
   },
 });
 
