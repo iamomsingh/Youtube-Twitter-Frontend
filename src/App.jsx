@@ -17,21 +17,23 @@ import VideoDetail from "./pages/VideoDetail.jsx";
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path='' element={<Layout />}>
-      <Route path='/login' element={<Login />} />
-      <Route path='/signup' element={<SignUp />} />
-      <Route path='/' element={<HomePage />} />
-      <Route path='/watch/:videoId' element={<VideoDetail />} />
+    <Route>
+      <Route path='' element={<Layout />}>
+        <Route path='/login' element={<Login />} />
+        <Route path='/signup' element={<SignUp />} />
+        <Route path='/' element={<HomePage />} />
 
-      <Route path='' element={<AuthLayout />}>
-        <Route path='/channel/:userName' element={<Channel />}>
-          <Route path='videos' element={<ChannelVideos />} />
-          <Route path='playlists' element='' />
-          <Route path='tweets' element='' />
-          <Route path='subscribed' element='' />
+        <Route path='' element={<AuthLayout />}>
+          <Route path='/channel/:userName' element={<Channel />}>
+            <Route path='videos' element={<ChannelVideos />} />
+            <Route path='playlists' element='' />
+            <Route path='tweets' element='' />
+            <Route path='subscribed' element='' />
+          </Route>
+          <Route path='/history' element={<History />} />
         </Route>
-        <Route path='/history' element={<History />} />
       </Route>
+      <Route path='/watch/:videoId' element={<VideoDetail />}></Route>
     </Route>
   )
 );

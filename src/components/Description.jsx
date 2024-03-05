@@ -39,7 +39,7 @@ const Description = ({
   };
   return (
     <>
-      <section className='sm:max-w-4xl w-full text-white sm:p-5 p-2 space-y-2'>
+      <section className='sm:max-w-4xl w-full text-white sm:p-8 px-2 space-y-2'>
         <div className='border-b-0 border-slate-700'>
           <div className='space-y-1.5 mb-2'>
             <h1 className='sm:text-2xl font-semibold'>{title}</h1>

@@ -50,7 +50,7 @@ const CommentList = ({
     <>
       <div className='text-white w-full flex justify-start items-center sm:gap-5 gap-3  p-3 sm:p-5'>
         <div className='w-12'>
-          <Link to={`/channel/${userName}/videos`}>
+          <Link to={`/channel/${userName}/video`}>
             <img
               src={avatar || avatar2}
               className='w-10 h-10 object-cover rounded-full'
