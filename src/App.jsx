@@ -17,6 +17,7 @@ import VideoDetail from "./pages/VideoDetail.jsx";
 import ChannelTweets from "./pages/Channel/ChannelTweets.jsx";
 import LikedVideos from "./pages/LikedVideos.jsx";
 import ChannelSubscribers from "./pages/Channel/ChannelSubscribers.jsx";
+import MySubscriptions from "./pages/MySubscriptions.jsx";
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
@@ -35,6 +36,7 @@ export const router = createBrowserRouter(
           </Route>
           <Route path='/history' element={<History />} />
           <Route path='/liked-videos' element={<LikedVideos />} />
+          <Route path='/subscribers' element={<MySubscriptions />} />
         </Route>
       </Route>
       <Route path='/watch/:videoId' element={<VideoDetail />}></Route>

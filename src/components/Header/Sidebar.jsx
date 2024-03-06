@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { RiHome6Line } from "react-icons/ri";
 import { BiLike } from "react-icons/bi";
 import { BiHistory } from "react-icons/bi";
@@ -8,7 +8,9 @@ import { TbUserCheck } from "react-icons/tb";
 import { CiSettings } from "react-icons/ci";
 import { MdOutlineContactSupport } from "react-icons/md";
 import { Link, NavLink } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { getSubscribedChannels } from "../../store/Slices/subscriptionSlice";
+import { Avatar } from "../../components";
 
 const Sidebar = () => {
   const userName = useSelector((state) => state.auth?.userData?.userName);
@@ -67,28 +69,63 @@ const Sidebar = () => {
       url: "/subscribers",
     },
   ];
+
+  const dispatch = useDispatch();
+  const subscriptions = useSelector(
+    (state) => state.subscription.mySubscriptions
+  );
+  const subscriberId = useSelector((state) => state.auth?.userData?._id);
+
+  useEffect(() => {
+    if (subscriberId) {
+      dispatch(getSubscribedChannels(subscriberId));
+    }
+  }, [dispatch, subscriberId]);
   return (
     <>
       <div className='sm:block hidden'>
         <div className='text-white lg:w-56 md:w-44 w-16 sm:p-3 p-2 border-slate-600 border-r-[0.5] h-[93vh] flex flex-col justify-between'>
-          <div className='flex flex-col gap-4 mt-5'>
-            {sidebarTopItems.map((item) => (
-              <NavLink
-                to={item.url}
-                key={item.title}
-                className={({ isActive }) =>
-                  isActive ? "bg-purple-500 rounded-lg" : ""
-                }
-              >
-                <div className='flex items-center gap-2 justify-center sm:justify-start rounded-lg hover:bg-purple-500 cursor-pointer py-1 px-2 border border-slate-600'>
-                  <div>{item.icon}</div>
-                  <span className='text-base hidden md:block'>
-                    {item.title}
-                  </span>
-                </div>
-              </NavLink>
-            ))}
-          </div>
+          <section>
+            <div className='flex flex-col gap-4 mt-5 border-b-2 border-slate-300 mb-5'>
+              {sidebarTopItems.map((item) => (
+                <NavLink
+                  to={item.url}
+                  key={item.title}
+                  className={({ isActive }) =>
+                    isActive ? "bg-purple-500 rounded-lg" : ""
+                  }
+                >
+                  <div className='flex items-center gap-2 justify-center sm:justify-start rounded-lg hover:bg-purple-500 cursor-pointer py-1 px-2 border border-slate-600'>
+                    <div>{item.icon}</div>
+                    <span className='text-base hidden md:block'>
+                      {item.title}
+                    </span>
+                  </div>
+                </NavLink>
+              ))}
+            </div>
+
+            <div className='flex flex-col gap-2 mt-5'>
+              <h2>Subscriptions</h2>
+              {subscriptions?.map((subscription) => (
+                <NavLink
+                  to={`/channel/${subscription.subscribedChannel.userName}/videos`}
+                  key={subscription?.subscribedChannel?._id}
+                  className={({ isActive }) =>
+                    isActive ? "bg-purple-500 rounded-lg" : ""
+                  }
+                >
+                  <div className='flex items-center gap-2 justify-center sm:justify-start rounded-lg hover:bg-purple-500 cursor-pointer py-1 px-2 border border-slate-600'>
+                    <Avatar
+                      src={subscription?.subscribedChannel?.avatar.url}
+                      channelName={subscription?.subscribedChannel?.userName}
+                    />
+                    <h5>{subscription?.subscribedChannel?.userName}</h5>
+                  </div>
+                </NavLink>
+              ))}
+            </div>
+          </section>
 
           <div className='space-y-4 mb-10'>
             <Link
