@@ -25,11 +25,15 @@ import Spinner from "./Spinner";
 import TweetsList from "./TweetsList";
 import Avatar from "./Avatar";
 import TogglePublish from "./TogglePublish";
+import Input2 from "./Input2";
+import UploadingVideo from "./UploadingVideo";
+import UploadVideo from "./UploadVideo";
 
 export {
   Button,
   Container,
   Input,
+  Input2,
   Navbar,
   Search,
   Sidebar,
@@ -54,4 +58,6 @@ export {
   TweetsList,
   Avatar,
   TogglePublish,
+  UploadVideo,
+  UploadingVideo,
 };
