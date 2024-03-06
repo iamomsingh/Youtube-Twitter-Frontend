@@ -4,7 +4,7 @@ import userSliceReducer from "./Slices/userSlice.js";
 import videoSliceReducer from "./Slices/videoSlice.js";
 import commentSliceReducer from "./Slices/commentSlice.js";
 import dashboardSliceReducer from "./Slices/dashboardSlice.js";
-import likeSliceReducer from "./Slices/dashboardSlice.js";
+import likeSliceReducer from "./Slices/likeSlice.js";
 import playlistSliceReducer from "./Slices/playlistSlice.js";
 import subscriptionSliceReducer from "./Slices/subscriptionSlice.js";
 import tweetSlice from "./Slices/tweetSlice.js";
