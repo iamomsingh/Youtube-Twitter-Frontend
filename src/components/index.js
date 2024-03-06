@@ -24,6 +24,7 @@ import Edit from "./Edit";
 import Spinner from "./Spinner";
 import TweetsList from "./TweetsList";
 import Avatar from "./Avatar";
+import TogglePublish from "./TogglePublish";
 
 export {
   Button,
@@ -52,4 +53,5 @@ export {
   Spinner,
   TweetsList,
   Avatar,
+  TogglePublish,
 };

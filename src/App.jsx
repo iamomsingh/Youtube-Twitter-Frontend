@@ -18,6 +18,7 @@ import ChannelTweets from "./pages/Channel/ChannelTweets.jsx";
 import LikedVideos from "./pages/LikedVideos.jsx";
 import ChannelSubscribers from "./pages/Channel/ChannelSubscribers.jsx";
 import MySubscriptions from "./pages/MySubscriptions.jsx";
+import AdminDashboard from "./pages/AdminDashboard.jsx";
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
@@ -40,6 +41,7 @@ export const router = createBrowserRouter(
         </Route>
       </Route>
       <Route path='/watch/:videoId' element={<VideoDetail />}></Route>
+      <Route path='/collections' element={<AdminDashboard />} />
     </Route>
   )
 );
