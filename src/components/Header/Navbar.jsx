@@ -44,10 +44,12 @@ const Navbar = () => {
   return (
     <>
       <nav className='w-full bg-[#0E0F0F] flex justify-between items-center p-4 sm:gap-5 gap-2 border-b-0 border-gray-500 sticky top-0 z-50'>
-        <div className='flex items-center justify-center gap-2 cursor-pointer'>
-          <IoLogoYoutube size={33} color='red' />
-          <span className='font-bold text-white'>YouTube</span>
-        </div>
+        <Link to={"/"}>
+          <div className='flex items-center justify-center gap-2 cursor-pointer'>
+            <IoLogoYoutube size={33} color='red' />
+            <span className='font-bold text-white'>YouTube</span>
+          </div>
+        </Link>
 
         {/* search for large screens */}
         <div className='w-full sm:w-1/3 hidden sm:block'>

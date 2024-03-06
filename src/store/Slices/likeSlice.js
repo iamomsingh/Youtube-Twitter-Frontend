@@ -12,7 +12,7 @@ export const getLikedVideos = createAsyncThunk("getLikedVideos", async () => {
     const response = await axiosInstance.get(`/api/v1/likes/videos`);
     return response.data.data;
   } catch (error) {
-    toast.error("Failed to change Like stats");
+    toast.error("Failed to get liked video");
     throw error;
   }
 });

@@ -6,7 +6,7 @@ function VideoList({
   thumbnail,
   duration,
   title,
-  views = 0,
+  views = 1,
   avatar,
   channelName,
   createdAt,

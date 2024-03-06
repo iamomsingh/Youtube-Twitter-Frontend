@@ -27,7 +27,7 @@ export const userWatchHistory = createAsyncThunk(
   async () => {
     try {
       const response = await axiosInstance.get("/api/v1/users/history");
-      console.log(response.data.data);
+      // console.log(response.data.data);
       return response.data.data;
     } catch (error) {
       console.log(error);

@@ -26,21 +26,19 @@ const History = () => {
   if (videos && videos.length > 0) {
     return (
       <Container>
-        <div className='grid max-h-screen mb-20 sm:m-0 overflow-y-scroll lg:grid-cols-3 sm:grid-cols-2 grid-col-1 text-white'>
-          {videos.map((video) => (
-            <Link to={`/watch/${video._id}`} key={video._id}>
-              <VideoList
-                key={video._id}
-                avatar={video.owner?.avatar?.url}
-                duration={video.duration}
-                title={video.title}
-                thumbnail={video.thumbnail?.url}
-                createdAt={video.createdAt}
-                views={video.views}
-                channelName={video.owner?.userName}
-                videoId={video._id}
-              />
-            </Link>
+        <div className='grid max-h-screen mb-20 sm:m-0 overflow-y-scroll lg:grid-cols-3 sm:grid-cols-2 grid-col-1 text-white sm:mb-0'>
+          {videos?.map((video) => (
+            <VideoList
+              key={video._id}
+              avatar={video.owner?.avatar?.url}
+              duration={video.duration}
+              title={video.title}
+              thumbnail={video.thumbnail?.url}
+              createdAt={video.createdAt}
+              views={video.views}
+              channelName={video.owner?.userName}
+              videoId={video._id}
+            />
           ))}
         </div>
       </Container>
