@@ -64,22 +64,22 @@ const UploadingVideo = ({
                 )}
               </div>
             </div>
+          </div>
 
-            <div className='flex gap-2'>
-              <Button
-                className='border flex-1 p-2'
-                onClick={handleCancelAndFinish}
-              >
-                Cancel
-              </Button>
-              <Button
-                className='flex-1 bg-purple-500 p-2'
-                textColor='text-black'
-                onClick={handleCancelAndFinish}
-              >
-                Finish
-              </Button>
-            </div>
+          <div className='flex gap-2'>
+            <Button
+              className='border flex-1 p-2'
+              onClick={handleCancelAndFinish}
+            >
+              Cancel
+            </Button>
+            <Button
+              className='flex-1 bg-purple-500 p-2'
+              textColor='text-black'
+              onClick={handleCancelAndFinish}
+            >
+              Finish
+            </Button>
           </div>
         </div>
       </div>

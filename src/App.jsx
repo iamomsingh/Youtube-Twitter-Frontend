@@ -41,7 +41,9 @@ export const router = createBrowserRouter(
         </Route>
       </Route>
       <Route path='/watch/:videoId' element={<VideoDetail />}></Route>
-      <Route path='/collections' element={<AdminDashboard />} />
+      <Route path='' element={<AuthLayout />}>
+        <Route path='/collections' element={<AdminDashboard />} />
+      </Route>
     </Route>
   )
 );

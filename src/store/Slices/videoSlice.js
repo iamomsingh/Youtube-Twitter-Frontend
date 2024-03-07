@@ -71,7 +71,7 @@ export const publishAvideo = createAsyncThunk("publishAvideo", async (data) => {
   }
 });
 
-export const updateAvideo = createAsyncThunk(
+export const updateAVideo = createAsyncThunk(
   "updateAvideo",
   async (videoId, data) => {
     const formData = new FormData();
@@ -80,8 +80,11 @@ export const updateAvideo = createAsyncThunk(
     formData.append("description", data.description);
     formData.append("thumbnail", data.thumbnail);
     try {
-      const url = new URL(`/api/v1/video/v/${videoId}`);
-      const response = await axiosInstance.patch(url, formData);
+      // const url = new URL(`/api/v1/video/v/${videoId}`);
+      const response = await axiosInstance.patch(
+        `/api/v1/video/v/${videoId}`,
+        formData
+      );
       toast.success(response?.data?.message);
       return response.data?.data;
     } catch (error) {
@@ -91,7 +94,7 @@ export const updateAvideo = createAsyncThunk(
   }
 );
 
-export const deleteAvideo = createAsyncThunk(
+export const deleteAVideo = createAsyncThunk(
   "deleteAvideo",
   async (videoId) => {
     try {
@@ -157,17 +160,17 @@ const videoSlice = createSlice({
         state.loading = false;
         state.video = action.payload;
       })
-      .addCase(updateAvideo.pending, (state) => {
+      .addCase(updateAVideo.pending, (state) => {
         state.uploading = true;
       })
-      .addCase(updateAvideo.fulfilled, (state, action) => {
+      .addCase(updateAVideo.fulfilled, (state, action) => {
         state.uploading = false;
         state.uploaded = true;
       })
-      .addCase(deleteAvideo.pending, (state) => {
+      .addCase(deleteAVideo.pending, (state) => {
         state.loading = true;
       })
-      .addCase(deleteAvideo.fulfilled, (state, action) => {
+      .addCase(deleteAVideo.fulfilled, (state, action) => {
         state.loading = false;
         state.videos.docs = state.videos.docs.filter(
           (video) => video._id !== action.payload.videoId

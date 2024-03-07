@@ -28,6 +28,7 @@ import TogglePublish from "./TogglePublish";
 import Input2 from "./Input2";
 import UploadingVideo from "./UploadingVideo";
 import UploadVideo from "./UploadVideo";
+import EditVideo from "./EditVideo";
 import HeaderSection from "./Dashboard/HeaderSection";
 import StatsSection from "./Dashboard/StatsSection";
 import VideoTable from "./Dashboard/VideoTable";
@@ -63,6 +64,7 @@ export {
   TogglePublish,
   UploadVideo,
   UploadingVideo,
+  EditVideo,
   HeaderSection,
   StatsSection,
   VideoTable,

@@ -21,6 +21,7 @@ import { FaRegEye, FaRegHeart } from "react-icons/fa";
 import { MdOutlineCloudUpload } from "react-icons/md";
 import { IoMdShareAlt } from "react-icons/io";
 import { MdOutlinePlaylistAdd } from "react-icons/md";
+import { PiFilmReelFill } from "react-icons/pi";
 
 export {
   IoCloseCircleOutline,
@@ -47,4 +48,5 @@ export {
   MdOutlineCloudUpload,
   IoMdShareAlt,
   MdOutlinePlaylistAdd,
+  PiFilmReelFill,
 };

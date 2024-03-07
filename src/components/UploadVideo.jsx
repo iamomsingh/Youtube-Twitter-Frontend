@@ -6,7 +6,7 @@ import { Input2, Button, UploadingVideo } from "./index";
 import { useForm } from "react-hook-form";
 import { publishAvideo } from "../store/Slices/videoSlice";
 
-const UploadVideo = () => {
+const UploadVideo = ({ setUploadVideoPopup }) => {
   const dispatch = useDispatch();
   const uploading = useSelector((state) => state.video.uploading);
   const uploaded = useSelector((state) => state.video.uploaded);
@@ -51,7 +51,7 @@ const UploadVideo = () => {
   }
   return (
     <>
-      <div className='fixed top-5 left-0 w-full h-full flex justify-center items-center bg-black bg-opacity-70 z-30'>
+      <div className='fixed top-5 left-0 w-full h-full flex justify-center items-center bg-black bg-opacity-75 z-30'>
         <div className='relative w-[95vw] sm:w-3/4 h-[80vh] sm:h-[80vh] mx-auto text-white border overflow-y-scroll bg-black'>
           <form onSubmit={handleSubmit(publishVideo)} className='space-y-5'>
             <section className='h-12 sticky top-0 z-50 border-b w-full bg-[#222222] flex justify-between items-center px-3'>
@@ -73,9 +73,14 @@ const UploadVideo = () => {
               </div>
             </section>
 
-            <section className='px-3'>
-              <div className='w-full border border-dotted h-44 p-1 flex flex-col gap-3 justify-center items-center text-center'>
-                <GrUpload size={40} className='rounded-full' />
+            <section className='px-5'>
+              <div className='w-full border border-dotted h-46 p-1 flex flex-col gap-3 justify-center items-center text-center'>
+                <div className='mt-10'>
+                  <GrUpload
+                    size={70}
+                    className='rounded-full text-purple-500 bg-purple-300'
+                  />
+                </div>
                 <div>
                   <h1 className='font-medium text-sm'>
                     Drag and drop video files to upload{" "}

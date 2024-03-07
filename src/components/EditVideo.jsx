@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { IoCloseCircleOutline } from "./icons";
 import { Input2, Button, Spinner } from "./index";
 import { useForm } from "react-hook-form";
@@ -16,11 +16,11 @@ const EditVideo = ({ videoId, title, description, setEditVideoPopup }) => {
   } = useForm();
 
   const handleClosePopUp = () => {
-    (prev) => ({
+    setEditVideoPopup((prev) => ({
       ...prev,
       uploadVideo: false,
       editVideo: false,
-    });
+    }));
   };
 
   const updateVideo = async (data) => {
@@ -51,10 +51,10 @@ const EditVideo = ({ videoId, title, description, setEditVideoPopup }) => {
 
   return (
     <>
-      <div className='fixed top-0 left-0 w-full h-full flex justify-center item-center bg-black bg-opacity-75 z-50'>
+      <div className='fixed top-25 sm:top-15 left-0 w-full h-full flex justify-center item-center bg-black bg-opacity-75 z-50'>
         <form
           onSubmit={handleSubmit(updateVideo)}
-          className='bg-black space-y-2 border outline:none p-2'
+          className='bg-black space-y-2 border outline:none p-2 h-[70vh] mt-5'
         >
           <div className='flex justify-between item-center px-3 py-1 mb-2'>
             <div>
