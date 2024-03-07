@@ -28,6 +28,9 @@ import TogglePublish from "./TogglePublish";
 import Input2 from "./Input2";
 import UploadingVideo from "./UploadingVideo";
 import UploadVideo from "./UploadVideo";
+import HeaderSection from "./Dashboard/HeaderSection";
+import StatsSection from "./Dashboard/StatsSection";
+import VideoTable from "./Dashboard/VideoTable";
 
 export {
   Button,
@@ -60,4 +63,7 @@ export {
   TogglePublish,
   UploadVideo,
   UploadingVideo,
+  HeaderSection,
+  StatsSection,
+  VideoTable,
 };
