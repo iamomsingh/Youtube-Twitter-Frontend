@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Button, Container, Navbar, TogglePublish } from "../components";
+import { Button, Container, Navbar } from "../components";
 import { FaRegEye, FaRegHeart } from "react-icons/fa";
 import { RxAvatar } from "react-icons/rx";
 
@@ -74,9 +74,9 @@ const AdminDashboard = () => {
               </thead>
               <tbody className='text-center'>
                 <tr>
-                  <td className='py-2 px-4 border-b border-slate-500'>
+                  {/* <td className='py-2 px-4 border-b border-slate-500'>
                     <TogglePublish isPublished={false} />
-                  </td>
+                  </td> */}
                   <td className='py-2 px-4 border-b border-slate-500 '>
                     Published
                   </td>
