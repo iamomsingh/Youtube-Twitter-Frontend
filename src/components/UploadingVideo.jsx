@@ -11,6 +11,7 @@ const UploadingVideo = ({
   uploaded,
 }) => {
   const dispatch = useDispatch();
+
   const handleCancelAndFinish = () => {
     setUploadVideoPopup((prev) => ({
       ...prev,
