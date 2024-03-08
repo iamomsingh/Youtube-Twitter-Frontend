@@ -125,7 +125,7 @@ export const updateCoverImg = createAsyncThunk(
   async (coverImage) => {
     try {
       const response = await axiosInstance.patch(
-        "/api/v1/users/update-coverImg",
+        "/api/v1/users/update-cover-image",
         coverImage
       );
       if (response.data?.success) {

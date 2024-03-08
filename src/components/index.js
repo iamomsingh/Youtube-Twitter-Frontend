@@ -32,6 +32,7 @@ import EditVideo from "./EditVideo";
 import HeaderSection from "./Dashboard/HeaderSection";
 import StatsSection from "./Dashboard/StatsSection";
 import VideoTable from "./Dashboard/VideoTable";
+import EditAvatar from "./EditAvatar";
 
 export {
   Button,
@@ -68,4 +69,5 @@ export {
   HeaderSection,
   StatsSection,
   VideoTable,
+  EditAvatar,
 };

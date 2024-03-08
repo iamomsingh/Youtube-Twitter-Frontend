@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Button } from "../index";
-import { NavLink } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Button, EditAvatar } from "../index";
+import { NavLink, Link } from "react-router-dom";
+import { toggleSubscription } from "../../store/Slices/subscriptionSlice";
 
 function ChannelHeader({
   coverImage,
@@ -13,23 +15,47 @@ function ChannelHeader({
   channelId,
   edit,
 }) {
-  // const [toogleSubscribe, setToggleSubscribe] = useState("");
-  // if (isSubscribed) {
-  //   setToggleSubscribe(true);
-  // }
+  const dispatch = useDispatch();
+  const userProfile = useSelector((state) => state.user?.profileData?._id);
+  const user = useSelector((state) => state.auth?.userData?._id);
 
-  // useEffect(() => {}, [toogleSubscribe]);
+  const [localIsSubscribed, setLocalIsSubscribed] = useState(isSubscribed);
+  const [localSubscribersCount, setLocalSubscribersCount] =
+    useState(subscribersCount);
+
+  useEffect(() => {
+    setLocalSubscribersCount(subscribersCount);
+    setLocalIsSubscribed(isSubscribed);
+  }, [subscribersCount, isSubscribed]);
+
+  const handleSubscribe = () => {
+    dispatch(toggleSubscription(channelId));
+    setLocalIsSubscribed((prev) => !prev);
+    if (localIsSubscribed) {
+      setLocalSubscribersCount((prev) => prev - 1);
+    } else {
+      setLocalSubscribersCount((prev) => prev + 1);
+    }
+  };
+
   return (
     <>
       <div className='w-full text-white'>
         {/* coverImage section */}
         <section className='w-full bg-green-300'>
           {coverImage ? (
-            <img
-              src={coverImage}
-              alt='cover-image'
-              className='sm:h-40 h-28 w-full object-cover'
-            />
+            <div className='relative'>
+              <img
+                src={coverImage}
+                alt='cover-image'
+                className='sm:h-40 h-28 w-full object-cover'
+              />
+              {edit && (
+                <div className='absolute inset-0 flex justify-center items-center'>
+                  <EditAvatar cover={true} />
+                </div>
+              )}
+            </div>
           ) : (
             <div className='sm:h-40 h-28 w-full border-slate-600 border-b bg-black'></div>
           )}
@@ -43,6 +69,11 @@ function ChannelHeader({
                 alt='avatar'
                 className='rounded-full object-cover sm:w-32 w-28 sm:h-32 h-28 absolute sm:bottom-10 bottom-20 outline-none'
               />
+              {edit && (
+                <div className='absolute inset-0 flex justify-center items-start'>
+                  <EditAvatar />
+                </div>
+              )}
             </div>
           </div>
           <div className='w-full md:h-24 sm:h-20 flex justify-between items-start px-1'>
@@ -51,18 +82,39 @@ function ChannelHeader({
               <h3 className='text-sm text-slate-400'>@{fullName}</h3>
               <div className='flex gap-1'>
                 <p className='text-xs text-slate-400'>
-                  {subscribersCount} subscribers
+                  {localSubscribersCount &&
+                    `${localSubscribersCount} Subscribers`}
                 </p>
                 <p className='text-xs text-slate-400'>
-                  {subscribedCount} subscribed
+                  {subscribedCount && `${subscribedCount}`} {"Subscribed"}
                 </p>
               </div>
             </div>
-            {/* <div onClick={() => setToggleSubscribe((prev) => !prev)}>
-              <Button className='border-slate-500 hover:scale-110 transition-all text-black font-bold px-4 py-1 bg-purple-500'>
-                {toogleSubscribe ? "Subscribed" : "Subscribe"}
+
+            {user == userProfile && !edit && (
+              <Link to={`/channel/${userName}/edit`}>
+                <Button className='border-slate-500 hover:scale-110 transition-all text-black font-bold px-4 py-1 bg-purple-500'>
+                  Edit
+                </Button>
+              </Link>
+            )}
+
+            {user != userProfile && !edit && (
+              <Button
+                onClick={handleSubscribe}
+                className='border-slate-500 hover:scale-110 transition-all text-black font-bold px-4 py-1 bg-purple-500'
+              >
+                {localIsSubscribed ? "Subscribed" : "Subscribe"}
               </Button>
-            </div> */}
+            )}
+
+            {edit && (
+              <Link to={`/channel/${userName}`}>
+                <Button className='border-slate-500 hover:scale-110 transition-all text-black font-bold px-4 py-1 bg-purple-500'>
+                  View Channel
+                </Button>
+              </Link>
+            )}
           </div>
         </section>
       </div>
