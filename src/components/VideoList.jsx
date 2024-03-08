@@ -43,8 +43,8 @@ function VideoList({
           )}
           <div>
             <h2 className='font-medium'>{title}</h2>
-            <div className='text-xs space-x-1 text-slate-400'>
-              <span>{views} Views</span> .<span>{timeAgo(createdAt)}</span>
+            <div className='text-xs space-x-2 text-slate-400'>
+              <span>{views} Views</span> <span>{timeAgo(createdAt)}</span>
             </div>
             {channelName && (
               <div onClick={handleChannelClick}>

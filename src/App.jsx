@@ -9,7 +9,13 @@ import {
 } from "react-router-dom";
 import Layout from "./Layout.jsx";
 import HomePage from "./pages/HomePage.jsx";
-import { AuthLayout, Login, SignUp } from "./components/index";
+import {
+  AuthLayout,
+  ChangePassword,
+  EditPersonalInfo,
+  Login,
+  SignUp,
+} from "./components/index";
 import Channel from "./pages/Channel/Channel.jsx";
 import ChannelVideos from "./pages/Channel/ChannelVideos.jsx";
 import History from "./pages/History.jsx";
@@ -36,10 +42,13 @@ export const router = createBrowserRouter(
             <Route path='tweets' element={<ChannelTweets />} />
             <Route path='subscribed' element={<ChannelSubscribers />} />
           </Route>
+          <Route path='/channel/:userrName/edit' element={<EditChannel />}>
+            <Route path='personalInfo' element={<EditPersonalInfo />} />
+            <Route path='password' element={<ChangePassword />} />
+          </Route>
           <Route path='/history' element={<History />} />
           <Route path='/liked-videos' element={<LikedVideos />} />
           <Route path='/subscribers' element={<MySubscriptions />} />
-          <Route path='/channel/:userrName/edit' element={<EditChannel />} />
         </Route>
       </Route>
       <Route path='/watch/:videoId' element={<VideoDetail />}></Route>

@@ -33,7 +33,7 @@ const Sidebar = () => {
     {
       icon: <HiOutlineVideoCamera size={25} />,
       title: "My Content",
-      url: `/channel/${userName}`,
+      url: `/channel/${userName}/videos`,
     },
     {
       icon: <IoFolderOutline size={25} />,

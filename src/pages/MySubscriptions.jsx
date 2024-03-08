@@ -20,7 +20,7 @@ const MySubscriptions = () => {
   window.scrollTo(0, 0);
   return (
     <>
-      <div className='flex gap-2 p-2 text-white items-center bg-[#222222] block sm:hidden'>
+      <div className='flex gap-2 p-2 text-white items-center bg-[#222222] sm:hidden'>
         {subscriptions?.map((subscription) => (
           <div
             key={subscription?.subscribedChannel?._id}
