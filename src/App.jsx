@@ -26,6 +26,7 @@ import ChannelSubscribers from "./pages/Channel/ChannelSubscribers.jsx";
 import MySubscriptions from "./pages/MySubscriptions.jsx";
 import AdminDashboard from "./pages/AdminDashboard.jsx";
 import EditChannel from "./pages/EditChannel.jsx";
+import TermsAndConditions from "./pages/TermsAndConditions.jsx";
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
@@ -50,6 +51,7 @@ export const router = createBrowserRouter(
           <Route path='/liked-videos' element={<LikedVideos />} />
           <Route path='/subscribers' element={<MySubscriptions />} />
         </Route>
+        <Route path='/support' element={<TermsAndConditions />} />
       </Route>
       <Route path='/watch/:videoId' element={<VideoDetail />}></Route>
       <Route path='' element={<AuthLayout />}>
