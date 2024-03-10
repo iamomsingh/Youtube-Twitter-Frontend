@@ -35,6 +35,7 @@ import VideoTable from "./Dashboard/VideoTable";
 import EditAvatar from "./EditAvatar";
 import EditPersonalInfo from "./EditPersonalInfo";
 import ChangePassword from "./ChangePassword";
+import SearchForSmallerScreen from "./SearchForSmallerScreen";
 
 export {
   Button,
@@ -74,4 +75,5 @@ export {
   EditAvatar,
   EditPersonalInfo,
   ChangePassword,
+  SearchForSmallerScreen,
 };

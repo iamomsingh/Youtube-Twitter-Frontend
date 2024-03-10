@@ -11,9 +11,11 @@ import Search from "./Search";
 import Button from "../Button";
 import { useSelector } from "react-redux";
 import { Link, NavLink } from "react-router-dom";
+import SearchForSmallerScreen from "../SearchForSmallerScreen";
 
 const Navbar = () => {
   const [toggleMenu, setToggleMenu] = useState(false);
+  const [openSearch, setOpenSearch] = useState(false);
   const authStatus = useSelector((state) => state.auth.status);
   const userName = useSelector((state) => state.auth?.userData?.userName);
   const profileImg = useSelector((state) => state.auth.userData?.avatar.url);
@@ -58,7 +60,17 @@ const Navbar = () => {
 
         {/* search for small screens */}
         <div className='text-white w-full cursor-pointer inline-flex justify-end sm:hidden pr-4'>
-          <CiSearch size={30} fontWeight={"bold"} />
+          <CiSearch
+            size={30}
+            fontWeight={"bold"}
+            onClick={() => setOpenSearch((prev) => !prev)}
+          />
+          {openSearch && (
+            <SearchForSmallerScreen
+              open={openSearch}
+              setOpenSearch={setOpenSearch}
+            />
+          )}
         </div>
 
         {/* login and signup buutons */}

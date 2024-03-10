@@ -40,11 +40,13 @@ const SearchVideos = () => {
   return (
     <>
       <div
-        className='w-full h-5 flex items-center font-bold justify-end cursor-pointer px-8'
+        className='w-full h-10 flex items-center font-bold justify-end cursor-pointer px-8'
         onClick={() => setFilterOpen((prev) => !prev)}
       >
-        <span className='text-white hover:text-purple-500'>Filters</span>
-        <FaFilter size={20} className='text-purple-500 hover:text-purple-800' />
+        <div className='flex items-center justify-center hover:bg-[#222222] hover:text-purple-500 rounded-full px-4 py-3 h-8 space-x-1'>
+          <span className='text-white'>Filters</span>
+          <FaFilter size={20} className='text-white' />
+        </div>
       </div>
 
       <div className='w-full text-white'>
