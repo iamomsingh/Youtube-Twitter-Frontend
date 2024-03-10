@@ -124,7 +124,7 @@ export const togglePublishedStatus = createAsyncThunk(
 );
 
 const videoSlice = createSlice({
-  name: "user",
+  name: "video",
   initialState,
   reducers: {
     updateUploadState: (state) => {

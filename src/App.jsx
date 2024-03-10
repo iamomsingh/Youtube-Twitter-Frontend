@@ -27,6 +27,7 @@ import MySubscriptions from "./pages/MySubscriptions.jsx";
 import AdminDashboard from "./pages/AdminDashboard.jsx";
 import EditChannel from "./pages/EditChannel.jsx";
 import TermsAndConditions from "./pages/TermsAndConditions.jsx";
+import SearchVideos from "./pages/SearchVideos.jsx";
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
@@ -35,6 +36,7 @@ export const router = createBrowserRouter(
         <Route path='/login' element={<Login />} />
         <Route path='/signup' element={<SignUp />} />
         <Route path='/' element={<HomePage />} />
+        <Route path='/search/:query' element={<SearchVideos />} />
 
         <Route path='' element={<AuthLayout />}>
           <Route path='/channel/:userName' element={<Channel />}>
