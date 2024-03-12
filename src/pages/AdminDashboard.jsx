@@ -22,6 +22,8 @@ const AdminDashboard = () => {
   const { channelStats: dashboard, channelVideos: videos } = useSelector(
     (state) => state.dashboard
   );
+  // console.log(dashboard);
+  // console.log(videos);
   const {
     uploaded,
     publishToggled,
@@ -42,6 +44,7 @@ const AdminDashboard = () => {
       ...prev,
       deleteVideo: !prev.deleteVideo,
     }));
+    console.log("deleted successfully");
   };
 
   useEffect(() => {

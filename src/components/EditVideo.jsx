@@ -25,6 +25,7 @@ const EditVideo = ({ videoId, title, description, setEditVideoPopup }) => {
 
   const updateVideo = async (data) => {
     await dispatch(updateAVideo({ videoId, data }));
+    // console.log("update successfully", data);
     setEditVideoPopup((prev) => ({
       ...prev,
       uploadVideo: false,

@@ -71,17 +71,16 @@ export const publishAvideo = createAsyncThunk("publishAvideo", async (data) => {
 });
 
 export const updateAVideo = createAsyncThunk(
-  "updateAvideo",
-  async (videoId, data) => {
+  "updateAVideo",
+  async ({ videoId, data }) => {
     const formData = new FormData();
 
     formData.append("title", data.title);
     formData.append("description", data.description);
-    formData.append("thumbnail", data.thumbnail);
+    formData.append("thumbnail", data.thumbnail[0]);
     try {
-      // const url = new URL(`/api/v1/video/v/${videoId}`);
       const response = await axiosInstance.patch(
-        `/api/v1/video/v/${videoId}`,
+        `/api/v1/video/${videoId}`,
         formData
       );
       toast.success(response?.data?.message);
@@ -97,7 +96,7 @@ export const deleteAVideo = createAsyncThunk(
   "deleteAvideo",
   async (videoId) => {
     try {
-      const response = await axiosInstance.delete(`/api/v1/video/v/${videoId}`);
+      const response = await axiosInstance.delete(`/api/v1/video/${videoId}`);
       toast.success(response?.data?.message);
       return response.data?.data;
     } catch (error) {
