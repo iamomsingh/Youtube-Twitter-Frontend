@@ -44,7 +44,7 @@ const AdminDashboard = () => {
       ...prev,
       deleteVideo: !prev.deleteVideo,
     }));
-    console.log("deleted successfully");
+    // console.log("deleted successfully");
   };
 
   useEffect(() => {

@@ -93,7 +93,7 @@ export const updateAVideo = createAsyncThunk(
 );
 
 export const deleteAVideo = createAsyncThunk(
-  "deleteAvideo",
+  "deleteAVideo",
   async (videoId) => {
     try {
       const response = await axiosInstance.delete(`/api/v1/video/${videoId}`);
@@ -170,9 +170,9 @@ const videoSlice = createSlice({
       })
       .addCase(deleteAVideo.fulfilled, (state, action) => {
         state.loading = false;
-        state.videos.docs = state.videos.docs.filter(
-          (video) => video._id !== action.payload.videoId
-        );
+        // state.videos.docs = state.videos.docs.filter(
+        //   (video) => video._id !== action.payload.videoId
+        // );
       })
       .addCase(togglePublishedStatus.fulfilled, (state) => {
         state.publishToggled = !state.publishToggled;
