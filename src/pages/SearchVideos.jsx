@@ -1,34 +1,37 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { NoVideosFound, VideoList } from "../components";
+import HomeSkeleton from "../skelton/HomeSkelton";
+import { getAllVideos, makeVideosNull } from "../store/Slices/videoSlice";
 import { FaFilter } from "react-icons/fa";
 import { IoCloseCircleOutline } from "react-icons/io5";
-import HomeSkeleton from "../skelton/HomeSkelton";
-import { VideoList, NoVideosFound } from "../components";
-import { getAllVideos, makeVideosNull } from "../store/Slices/videoSlice";
 import { useParams, useSearchParams } from "react-router-dom";
 
-const SearchVideos = () => {
-  const { loading, videos } = useSelector((state) => state.video);
-
+function SearchVideos() {
+  const loading = useSelector((state) => state.video?.loading);
+  const videos = useSelector((state) => state.video?.videos);
   const dispatch = useDispatch();
-  const { query } = useParams;
-
+  const { query } = useParams();
   const [filterOpen, setFilterOpen] = useState(false);
   const [searchParams, setSearchParms] = useSearchParams();
-
-  const handleSortParams = (newSortBy, newSortType = "asc") => {
-    setSearchParms({ sortBy: newSortBy, sortType: newSortType });
-  };
 
   useEffect(() => {
     const sortType = searchParams.get("sortType");
     const sortBy = searchParams.get("sortBy");
-
-    dispatch(getAllVideos({ query, sortBy, sortType }));
-
+    dispatch(
+      getAllVideos({
+        query,
+        sortBy,
+        sortType,
+      })
+    );
     setFilterOpen(false);
     return () => dispatch(makeVideosNull());
   }, [dispatch, query, searchParams]);
+
+  const handleSortParams = (newSortBy, newSortType = "asc") => {
+    setSearchParms({ sortBy: newSortBy, sortType: newSortType });
+  };
 
   if (videos?.totalDocs === 0) {
     return <NoVideosFound text={"Try searching something else"} />;
@@ -37,18 +40,16 @@ const SearchVideos = () => {
   if (loading) {
     return <HomeSkeleton />;
   }
+
   return (
     <>
       <div
-        className='w-full h-10 flex items-center font-bold justify-end cursor-pointer px-3'
+        className='w-full h-10 flex items-center font-bold justify-end cursor-pointer px-8'
         onClick={() => setFilterOpen((prev) => !prev)}
       >
-        <div className='flex items-center justify-center  hover:bg-purple-500 rounded-full px-4 py-3 h-8 space-x-1'>
-          <span className='text-white'>Filters</span>
-          <FaFilter size={20} className='text-white' />
-        </div>
+        <span className='text-white hover:text-purple-500'>Filters</span>
+        <FaFilter size={20} className='text-purple-500 hover:text-purple-800' />
       </div>
-
       <div className='w-full text-white'>
         {filterOpen && (
           <div className='w-full absolute bg-transparent'>
@@ -59,15 +60,13 @@ const SearchVideos = () => {
                 className='absolute right-5 top-5 cursor-pointer'
                 onClick={() => setFilterOpen((prev) => !prev)}
               />
-
               <table className='mt-4'>
                 <tr className='w-full text-start border-b'>
                   <th>SortBy</th>
                 </tr>
                 <tr className='flex flex-col gap-2 text-slate-400 cursor-pointer'>
                   <td onClick={() => handleSortParams("createdAt", "desc")}>
-                    Upload date
-                    <span className='text-xs'>(Latest)</span>
+                    Upload date <span className='text-xs'>(Latest)</span>
                   </td>
                   <td onClick={() => handleSortParams("createdAt", "asc")}>
                     Upload date <span className='text-xs'>(Oldest)</span>
@@ -76,7 +75,7 @@ const SearchVideos = () => {
                     View count <span className='text-xs'>(Low to High)</span>
                   </td>
                   <td onClick={() => handleSortParams("views", "desc")}>
-                    iew count <span className='text-xs'>(High to Low)</span>
+                    View count <span className='text-xs'>(High to Low)</span>
                   </td>
                   <td onClick={() => handleSortParams("duration", "asc")}>
                     Duration <span className='text-xs'>(Low to High)</span>
@@ -89,7 +88,6 @@ const SearchVideos = () => {
             </div>
           </div>
         )}
-
         <div className='grid h-screen xl:grid-cols-3 sm:grid-cols-2 grid-cols-1 text-white overflow-y-scroll'>
           {videos &&
             videos?.docs?.map((video) => (
@@ -109,6 +107,6 @@ const SearchVideos = () => {
       </div>
     </>
   );
-};
+}
 
 export default SearchVideos;
