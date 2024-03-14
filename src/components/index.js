@@ -36,6 +36,7 @@ import EditAvatar from "./EditAvatar";
 import EditPersonalInfo from "./EditPersonalInfo";
 import ChangePassword from "./ChangePassword";
 import SearchForSmallerScreen from "./SearchForSmallerScreen";
+import GetImagePreview from "./GetImagePreview";
 
 export {
   Button,
@@ -76,4 +77,5 @@ export {
   EditPersonalInfo,
   ChangePassword,
   SearchForSmallerScreen,
+  GetImagePreview,
 };

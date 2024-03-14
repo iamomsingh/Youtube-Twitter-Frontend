@@ -88,9 +88,9 @@ export const getPlaylistsByUser = createAsyncThunk(
       const response = await axiosInstance.get(
         `/api/v1/playlist/user/${userId}`
       );
-      if (response.data?.success) {
-        toast.success(response.data.message);
-      }
+      // if (response.data?.success) {
+      //   toast.success(response.data.message);
+      // }
       return response.data.data;
     } catch (error) {
       toast.error("failed to fetch playlist!!");

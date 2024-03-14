@@ -7,6 +7,7 @@ import {
   EditVideo,
   HeaderSection,
   Navbar,
+  Spinner,
   StatsSection,
   UploadVideo,
   VideoTable,
@@ -22,8 +23,6 @@ const AdminDashboard = () => {
   const { channelStats: dashboard, channelVideos: videos } = useSelector(
     (state) => state.dashboard
   );
-  // console.log(dashboard);
-  // console.log(videos);
   const {
     uploaded,
     publishToggled,
@@ -90,6 +89,15 @@ const AdminDashboard = () => {
                 }
                 onDelete={handleDeleteVideo}
               />
+            </div>
+          )}
+
+          {deleting && (
+            <div className='w-full fixed top-20 flex justify-center z-20'>
+              <div className='w-52 border border-slate-600 bg-black flex gap-2 p-3'>
+                <Spinner />
+                <span className='text-md font-bold'>Deleting video...</span>
+              </div>
             </div>
           )}
 

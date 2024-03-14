@@ -1,5 +1,5 @@
 import React from "react";
-import { Logo, Button, Input } from "./index";
+import { Logo, Button, Input, GetImagePreview } from "./index";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import {
@@ -15,6 +15,7 @@ function SignUp() {
   const {
     handleSubmit,
     register,
+    control,
     formState: { errors },
   } = useForm();
   const navigate = useNavigate();
@@ -46,64 +47,84 @@ function SignUp() {
 
   return (
     <>
-      <div className=' fixed inset-0 text-white px-3 flex justify-center items-center bg-black bg-opacity-75 z-50'>
-        <div className='flex max-w-5xl flex-col space-y-5 justify-center items-center border border-slate-600 p-3'>
-          <div className='flex items-center gap-2 mt-5'>
+      <div className='w-full h-screen text-white p-3 flex justify-center items-start sm:mt-8'>
+        <div className='flex max-w-5xl flex-col space-y-3 justify-center items-center border border-slate-600 p-3'>
+          <div className='flex items-center gap-2'>
             <Logo />
           </div>
-          <form onSubmit={handleSubmit(submit)} className='space-y-5 p-2'>
+          <form
+            onSubmit={handleSubmit(submit)}
+            className='space-y-5 p-2 text-sm sm:w-96 w-full'
+          >
+            <div className='w-full relative h-28 bg-[#222222]'>
+              <div className='w-full h-full'>
+                <GetImagePreview
+                  name='coverImage'
+                  control={control}
+                  className='w-full h-28 object-cover border-none border-slate-900'
+                  cameraIcon
+                />
+                <div className='text-sm absolute right-2 bottom-2 hover:text-purple-500 cursor-default'>
+                  cover Image
+                </div>
+              </div>
+              <div className='absolute left-2 bottom-2 rounded-full border-2'>
+                <GetImagePreview
+                  name='avatar'
+                  control={control}
+                  className='object-cover rounded-full h-20 w-20 outline-none'
+                  cameraIcon={true}
+                  cameraSize={20}
+                />
+              </div>
+            </div>
+            {errors.avatar && (
+              <span className='text-red-500'>{errors.avatar.message}</span>
+            )}
             <Input
               label='Username: '
               type='text'
-              placeholder=''
+              placeholder='Enter username'
               {...register("username", {
-                required: true,
+                required: "username is required",
               })}
             />
             {errors.username && (
-              <span className='text-white'>{errors.username.message}</span>
+              <span className='text-red-500'>{errors.username.message}</span>
             )}
             <Input
               label='Email: '
               type='email'
-              placeholder=''
+              placeholder='Enter email'
               {...register("email", {
-                required: true,
+                required: "email is required",
               })}
             />
             {errors.email && (
-              <span className='text-white'>{errors.email.message}</span>
+              <span className='text-red-500'>{errors.email.message}</span>
             )}
             <Input
               label='Fullname: '
               type='text'
-              placeholder=''
-              {...register("fullName", {
-                required: true,
+              placeholder='Enter fullname'
+              {...register("fullname", {
+                required: "fullname is required",
               })}
             />
             {errors.fullname && (
-              <span className='text-white'>{errors.fullname.message}</span>
+              <span className='text-red-500'>{errors.fullname.message}</span>
             )}
             <Input
               label='Password: '
               type='password'
-              placeholder=''
+              placeholder='password is required'
               {...register("password", {
-                required: true,
+                required: "password is requird",
               })}
             />
-            {errors.password && <span>{errors.password.message}</span>}
-            <Input
-              label='Profile Picture: '
-              type='file'
-              placeholder=''
-              {...register("avatar", {
-                required: true,
-              })}
-              accept='image/png, image/jpeg'
-            />
-            {errors.password && <span>{errors.avatar.message}</span>}
+            {errors.password && (
+              <span className='text-red-500'>{errors.password.message}</span>
+            )}
 
             <Button
               type='submit'
