@@ -81,7 +81,7 @@ export const getPlaylistById = createAsyncThunk(
   }
 );
 
-export const getPlaylistByUser = createAsyncThunk(
+export const getPlaylistsByUser = createAsyncThunk(
   "getPlaylistByUser",
   async (userId) => {
     try {
@@ -142,57 +142,61 @@ const playlistSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(createAPlaylist.pending, (state) => {
-        state.loading = true;
-      })
-      .addCase(createAPlaylist.fulfilled, (state, action) => {
-        state.loading = false;
-        state.playlists = state.playlists.unshift(action.payload);
-      })
-      .addCase(addVideoToPlaylist.pending, (state) => {
-        state.loading = true;
-      })
-      .addCase(addVideoToPlaylist.fulfilled, (state, action) => {
-        state.loading = false;
-        state.playlist = state.playlist.videos.unshift(action.payload);
-      })
-      .addCase(removeVideoFromPLaylist.pending, (state) => {
-        state.loading = true;
-      })
-      .addCase(removeVideoFromPLaylist.fulfilled, (state, action) => {
-        state.loading = false;
-        state.playlist = state.playlist.videos.filter(
-          (video) => video._id !== action.payload.videoId
-        );
-      })
-      .addCase(getPlaylistById.pending, (state) => {
-        state.loading = true;
-      })
-      .addCase(getPlaylistById.fulfilled, (state) => {
-        state.loading = false;
-      })
-      .addCase(getPlaylistByUser.pending, (state) => {
-        state.loading = true;
-      })
-      .addCase(getPlaylistByUser.fulfilled, (state) => {
-        state.loading = false;
-      })
-      .addCase(updatePlaylist.pending, (state) => {
-        state.loading = true;
-      })
-      .addCase(updatePlaylist.fulfilled, (state, action) => {
-        state.loading = false;
-        state.playlist = action.payload;
-      })
-      .addCase(deletePlaylist.pending, (state) => {
-        state.loading = true;
-      })
-      .addCase(deletePlaylist.fulfilled, (state, action) => {
-        state.loading = false;
-        state.playlists = state.playlists.filter(
-          (playlist) => playlist._id !== action.payload.playlistId
-        );
+      //   .addCase(createAPlaylist.pending, (state) => {
+      //     state.loading = true;
+      //   })
+      //   .addCase(createAPlaylist.fulfilled, (state, action) => {
+      //     state.loading = false;
+      //     state.playlists = state.playlists.unshift(action.payload);
+      //   })
+      //   .addCase(addVideoToPlaylist.pending, (state) => {
+      //     state.loading = true;
+      //   })
+      //   .addCase(addVideoToPlaylist.fulfilled, (state, action) => {
+      //     state.loading = false;
+      //     state.playlist = state.playlist.videos.unshift(action.payload);
+      //   })
+      //   .addCase(removeVideoFromPLaylist.pending, (state) => {
+      //     state.loading = true;
+      //   })
+      //   .addCase(removeVideoFromPLaylist.fulfilled, (state, action) => {
+      //     state.loading = false;
+      //     state.playlist = state.playlist.videos.filter(
+      //       (video) => video._id !== action.payload.videoId
+      //     );
+      //   })
+      //   .addCase(getPlaylistById.pending, (state) => {
+      //     state.loading = true;
+      //   })
+      //   .addCase(getPlaylistById.fulfilled, (state) => {
+      //     state.loading = false;
+      //   })
+      //   .addCase(getPlaylistByUser.pending, (state) => {
+      //     state.loading = true;
+      //   })
+      // .addCase(getPlaylistByUser.fulfilled, (state, action) => {
+      //   // state.loading = false;
+      //   state.playlists = action.payload;
+      // })
+      .addCase(getPlaylistsByUser.fulfilled, (state, action) => {
+        state.playlists = action.payload;
       });
+    // .addCase(updatePlaylist.pending, (state) => {
+    //   state.loading = true;
+    // })
+    // .addCase(updatePlaylist.fulfilled, (state, action) => {
+    //   state.loading = false;
+    //   state.playlist = action.payload;
+    // })
+    // .addCase(deletePlaylist.pending, (state) => {
+    //   state.loading = true;
+    // })
+    // .addCase(deletePlaylist.fulfilled, (state, action) => {
+    //   state.loading = false;
+    //   state.playlists = state.playlists.filter(
+    //     (playlist) => playlist._id !== action.payload.playlistId
+    //   );
+    // });
   },
 });
 

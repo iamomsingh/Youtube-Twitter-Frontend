@@ -28,6 +28,7 @@ import AdminDashboard from "./pages/AdminDashboard.jsx";
 import EditChannel from "./pages/EditChannel.jsx";
 import TermsAndConditions from "./pages/TermsAndConditions.jsx";
 import SearchVideos from "./pages/SearchVideos.jsx";
+import ChannelPlaylist from "./pages/Channel/ChannelPlaylist.jsx";
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
@@ -41,7 +42,7 @@ export const router = createBrowserRouter(
         <Route path='' element={<AuthLayout />}>
           <Route path='/channel/:userName' element={<Channel />}>
             <Route path='videos' element={<ChannelVideos />} />
-            <Route path='playlists' element='' />
+            <Route path='playlists' element={<ChannelPlaylist />} />
             <Route path='tweets' element={<ChannelTweets />} />
             <Route path='subscribed' element={<ChannelSubscribers />} />
           </Route>
