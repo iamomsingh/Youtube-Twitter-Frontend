@@ -136,7 +136,7 @@ const Sidebar = () => {
               <span className='text-base hidden md:block'>Support</span>
             </Link>
             <Link
-              to={"/setting"}
+              // to={"/setting"}
               className='flex items-center gap-2 justify-center sm:justify-start rounded-lg hover:bg-purple-500 cursor-pointer py-1 px-2 border border-slate-600'
             >
               <CiSettings size={25} />

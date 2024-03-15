@@ -33,7 +33,7 @@ function SearchVideos() {
     setSearchParms({ sortBy: newSortBy, sortType: newSortType });
   };
 
-  if (videos?.totalDocs === 0) {
+  if (videos?.docs?.length === 0) {
     return <NoVideosFound text={"Try searching something else"} />;
   }
 

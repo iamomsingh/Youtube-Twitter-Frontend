@@ -25,6 +25,10 @@ const HomePage = () => {
     }
   }, [page, hasNextPage, dispatch]);
 
+  if (videos?.docs?.length === 0) {
+    return <NoVideosFound text={"There are no videos available"} />;
+  }
+
   return (
     <Container>
       <div className='text-white mt-0 mb-20 sm:m-0 max-h-screen w-full grid xl:grid-cols-3 sm:grid-cols-2 grid-cols-1 overflow-y-scroll'>

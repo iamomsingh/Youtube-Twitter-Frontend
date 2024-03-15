@@ -107,7 +107,7 @@ const ChannelPlaylist = () => {
         <div className='grid xl:grid-cols-3 md:grid-cols-2 p-2 gap-5 grid-cols-1 w-full mt-5'>
           {playlists?.map((playlist) => (
             <Link
-              to={`/playlist/${playlist._id}`}
+              // to={`/playlist/${playlist._id}`}
               key={playlist.id}
               className='relative h-[15rem] w-full border border-slate-500'
             >
