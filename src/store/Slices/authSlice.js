@@ -33,7 +33,7 @@ export const createAccount = createAsyncThunk("register", async (data) => {
 
 export const userLogin = createAsyncThunk("login", async (data) => {
   try {
-    const response = await axiosInstance.post(`api/v1/users/login`, data);
+    const response = await axiosInstance.post(`/api/v1/users/login`, data);
     // console.log(response.data.data.user);
     if (response.data?.success) {
       toast.success(response.data.message);
