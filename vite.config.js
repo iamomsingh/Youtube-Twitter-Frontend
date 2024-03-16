@@ -10,7 +10,10 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        target: "http://localhost:5000",
+        target:
+          process.env.NODE_ENV === "production"
+            ? "https://backend-with-fun.onrender.com"
+            : "http://localhost:5000",
         changeOrigin: true,
         secure: false,
         // ws: true,

@@ -1,7 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axiosInstance from "../../helpers/axiosInstance";
 import toast from "react-hot-toast";
-import { BASE_URL } from "../../constants";
 
 const initialState = {
   loading: false,
@@ -33,10 +32,7 @@ export const createAccount = createAsyncThunk("register", async (data) => {
 
 export const userLogin = createAsyncThunk("login", async (data) => {
   try {
-    const response = await axiosInstance.post(
-      `${BASE_URL}/api/v1/users/login`,
-      data
-    );
+    const response = await axiosInstance.post("/api/v1/users/login", data);
     // console.log(response.data.data.user);
     if (response.data?.success) {
       toast.success(response.data.message);
@@ -99,9 +95,7 @@ export const changePassword = createAsyncThunk(
 
 export const getCurrentUser = createAsyncThunk("getCurrentUser", async () => {
   try {
-    const response = await axiosInstance.get(
-      `${BASE_URL}/api/v1/users/current-user`
-    );
+    const response = await axiosInstance.get("/api/v1/users/current-user");
     // console.log(response.data.data);
     return response.data.data;
   } catch (error) {
